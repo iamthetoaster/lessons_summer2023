@@ -1,0 +1,210 @@
+#+TITLE: Lesson 0: How Do I Run Code?
+#+AUTHOR: Gabriel Cardozo
+#+PROPERTY: header-args :results raw verbatim output :post output_drawer(data=*this*) :noweb strip-export
+# #+EXPORT_FILE_NAME: exports/{{{input-file}}}
+#+HTML_HEAD: <style>
+#+HTML_HEAD: body { background-color:#181825; color:#cdd6f4 }
+#+HTML_HEAD: pre { background-color:#11111b }
+#+HTML_HEAD: a { color:#89b4fa }
+#+HTML_HEAD: ol ol { list-style-type: lower-alpha }
+#+HTML_HEAD: </style>
+
+#+NAME: output_drawer
+#+BEGIN_SRC shell :var data="" :exports none :results silent :results output :post
+echo ':results:'
+echo '#+HTML: <details>'
+echo '#+HTML: <summary>Output</summary>'
+echo '#+BEGIN_SRC'
+echo -n "$data"
+echo '#+END_SRC'
+echo '#+HTML: </details>'
+echo ':end:'
+#+END_SRC
+
+Before we even get into learning how to program, we must know - well, how to write programs! Knowing all the syntax in the world is useless if we don't know how to make a script go. This lesson will help you get set up with the basic necessities to write and run code.
+
+* Dependencies
+I am assuming that these lessons will be used by people using MacOS.
+** Making Sure You Have Python
+These lessons are focused on Python, so you'll wanna make sure you have that!
+
+*** Checking if Python is Already Installed
+First things first: Let's make sure it is not already installed. Open the terminal and attempt to run the ~python3~ program with the ~--version~ flag:
+
+#+BEGIN_SRC shell :exports both
+python3 --version
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Python 3.10.11
+#+END_SRC
+#+HTML: </details>
+:end:
+
+If that command yields results starting with ~Python 3~, then you are done! If not, it's worth trying the ~python~ command instead:
+
+#+BEGIN_SRC shell :exports both
+python --version
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Python 3.10.11
+#+END_SRC
+#+HTML: </details>
+:end:
+
+In my case, ~python~ is an alias for ~python3~. If you get an error, or some result starting with ~Python 2~, then you will have to actually install it!
+
+*** Installing Python Via The Official Installer
+This one's pretty straightforward. Follow [[https://www.python.org/downloads/macos/][this link]] and download the latest stable release of Python! Or a different one if you want. Your call. As long as it's Python 3 and not Python 2, I am not particularly fussed about it. Run the installer and presto! Return to the terminal and attempt the steps above to be sure it worked.
+
+*** Installing Python Via Homebrew
+Homebrew is a fancy package manager that is popular on MacOS (although it also works on Linux!) I do not know any particular reason to use Homebrew instead of the official method for installing Python, but A) it's your computer, who am I to judge, and B) there are a lot of things that I do not know.
+
+Follow [[https://brew.sh/][this link]] for instructions on how to install Homebrew - they will ask you to copy paste a command into the terminal.
+
+Once you have Homebrew installed, you'll need to install python! There are also instructions on how to install software using Homebrew on that page - but we aren't looking to install ~wget~, we want ~python3~! Give ~brew edit wget~ a try.
+
+Once that is done, follow the above instructions to check if Python is installed.
+
+** Making Sure You Have a Text Editor
+I wrote a lot of stuff here about the different text editor options you could use, but before you spend a lot of time on that, I am going to recommend [[Visual Studio Code][installing Visual Studio Code]]. If you are interested, read on. If not, jump ahead.
+
+*** Idle
+If you installed Python using the official method, you should also have the Idle text editor (and Python interpreter environment) installed. While there is nothing wrong with Idle, there isn't much right with it either, and I actually find the way you can use it to run programs a bit confusing. You can open ~.py~ files with Idle and edit them, and will get basic syntax highlighting and possibly autocomplete. If you really want to use Idle I can figure it out with you; it is not the option I recommend.
+
+*** A Terminal Editor
+MacOS already comes with a couple of perfectly fine terminal text editors. If you want, you can use one of them.
+
+The simpler, likely more familiar terminal text editor, is nano. To open, or create, a file using Nano, open the terminal, type the name of the program, and the path of a file you with to open or create:
+
+#+BEGIN_SRC shell :results none :eval never
+# For example, Documents/text.txt
+nano ~/Documents/test.txt
+#+END_SRC
+
+You may use arrow keys to navigate, and typing will insert or delete characters as you might expect, with some exceptions. ~Cmd+C~, ~Cmd+V~, or any similar commands are unlikely to function as they would outside of the terminal.
+
+Nano may not have syntax highlighting or any form of autocomplete. I would not recommend using it. The only real advantages it has are that it is already installed on your computer and it is a standard terminal text editor, which makes it easier to explain how to use.
+
+For example: to quit Nano, enter: ~Ctrl+X~. That's easier for me to explain that how to search through a menu! If you have edited the file you opened, it will ask you whether you want to save; you can press ~y~ or ~n~ to answer that, after which it will exit.
+
+The other preinstalled text editor worth considering is Vim. Vim is very useful, but very complicated. Luckily, it also comes with instructions. To learn to use Vim, enter the ~vimtutor~ command in the terminal. This will open a file in Vim with instructions on how to use it. You may also open a file in vim the same way one might in Nano:
+
+#+BEGIN_SRC shell :results none :eval never
+vim ~/Documents/test.txt
+#+END_SRC
+
+To exit Vim, press ~Escape~ repeatedly - a couple times should do it - type ~:q!~, and hit ~Enter~. This will exit the file you opened without saving. (If you want to save, type ~:wq~ instead.)
+
+As an aside, Vim is the standard terminal text editor on many computers, which may lead to you being in it without expecting it. If you spend time in the terminal, it may be worth knowing how to exit Vim, regardless of whether you intend to use it.
+
+If you ask, I will teach you how to use Vim, but I do not think that it is necessary. It's a cool text editor, but it has a steep learning curve, and that is probably not how you want to spend your time right now.
+
+*** Visual Studio Code
+Following [[https://code.visualstudio.com/download][this link]] should take you to the download page for Visual Studio Code. You'll want to download the appropriate version and install it - pretty straightforward!
+
+It should be a fairly familiar interface. There is [[https://code.visualstudio.com/docs/getstarted/userinterface][documentation]] of such topics as the basic layout of the program and how it is used. If the documentation does not help you, feel free to ask me questions. If and when you make or open a file with the extension ~.py~, it will offer to download some Python addons to make writing python code easier. I recommend doing so.
+
+Visual Studio Code is neat because it's a comfortable graphical text editor with some killer code completion, good syntax highlighting, and a built in terminal. This is the text editor I recommend using. (Unless you want to spend the time to learn Vim, but I do not recommend doing that unless you see yourself writing a lot of unformatted text as a career or hobby.)
+
+* Putting it Together
+So you've got a way to write code, and you've got a way to run it! Let's test that out.
+** Write Some Code
+First, you need a place to put the code. You may want a folder to put code in general in - I usually make a folder called ~code~, in either my user home or in ~Documents~. Create a folder called ~lesson_0~.
+
+If you are using Visual Studio Code, you can use it to open that folder. If you are using a terminal text editor, you probably want to navigate the terminal to that folder, using the ~cd~ change directory command.
+
+Now, create a file called ~lesson_0.py~ in that folder. We're going to make a simple "Hello World" script! The purpose of this tradition is making sure we know how to run a program, on whatever system or in whatever language we are using. In Python, it's pretty straightforward. Write the following code into the file:
+
+#+NAME: hello world
+#+BEGIN_SRC python :results output :tangle lesson_0.py
+<<shebang>>
+print("Hello World!")
+#+END_SRC
+
+#+RESULTS: hello world
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Hello World!
+#+END_SRC
+#+HTML: </details>
+:end:
+
+** Run Some Code
+Now, the moment of truth! Does the code run? How do we even figure that out?
+
+*** Running Code In The Terminal
+One of the methods I recommend using, which will basically always work, is via the terminal. If you are in Visual Studio Code, find the terminal tab. It should be open in the same folder as your source code. If you are using a terminal text editor, save out of the file and you should be in the terminal at the same location. Enter the following command:
+
+#+BEGIN_SRC shell :exports both :post output_drawer(data=*this*) :results raw verbatim output
+python3 lesson_0.py
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Hello World!
+#+END_SRC
+#+HTML: </details>
+:end:
+
+If the output is as above, congrats! You have run a python script!
+
+*** Running Code Using IDE Features
+In Visual Studio Code, there should be a green play button somewhere. Clicking it should run the program. There should also be a keyboard shortcut to do the same thing - hovering over the button should tell you what it is. Give it a try!
+
+I think it is useful to know how to run a Python script through the terminal, regardless of whether the green play button works, because it may not always be avaliable. Frankly, I just do not want to troubleshoot it if it doesn't work. That said, it's a neat and useful feature - feel free to use it if it works for you!
+
+Idle also has some integrated method to run code - I believe in the sucker tree menu up top. I find the way it does this confusing. We can figure it out if we must.
+
+*** Running an Executable Script
+There's another interesting way to run a Python script - you can make it an executable! First, you need to add what is known as a "shebang" at the very very start of the file:
+
+#+NAME: shebang
+#+BEGIN_SRC python :exports code :results none
+#!/usr/bin/env python3
+#+END_SRC
+
+The shebang tells the computer how to run the executable. Your text editor may have inserted one automatically when you created a ~.py~ file. If it did, it may also look like the following:
+
+#+NAME: alt shebang
+#+BEGIN_SRC python :exports code :results none
+#!/usr/bin/python3
+#+END_SRC
+
+That shebang is slightly less likely to work across a variety of systems, but probably fine. If you don't care to change it, I don't blame you.
+
+Then, enter the terminal. The following commands CHange the MODe of a file to eXecutable, and execute the file, respectively:
+
+#+TODO: Something to do with how noweb, tangle, and exporting interact isn't working
+#+BEGIN_SRC shell :export code
+chmod +x lesson_0.py # all lowercase
+./lesson_0.py
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Hello World!
+#+END_SRC
+#+HTML: </details>
+:end:
+
+You may also be able to execute the program by double clicking on it in Finder. While in this instance that is not likely to be very useful, it's fun to know about, and if you make more complex or useful programs in the future it may come in handy.
+* You Did It!
+By following these instructions you should be able to get set up to write and run python scripts in a comfortable way on your computer! These instructions will be useful for every other Python lesson you will encounter. While you may end up using Python in some application that uses a different process, this method provides a standard environment that will make it easy to learn, and easy to teach.
