@@ -10,7 +10,7 @@
          :publishing-function org-html-publish-to-html
          :headline-levels 4             ; just the default for this project.
          :auto-preamble t
-         ;; :auto-sitemap t
+          :auto-sitemap nil
          )
         ("summer2023-static"
          :base-directory "./source/"

@@ -1,0 +1,10 @@
+#+TITLE: Index
+#+AUTHOR: Gabriel Cardozo
+#+HTML_HEAD: <style>
+#+HTML_HEAD: body { background-color:#181825; color:#cdd6f4 }
+#+HTML_HEAD: pre { background-color:#11111b }
+#+HTML_HEAD: a { color:#89b4fa }
+#+HTML_HEAD: ol ol { list-style-type: lower-alpha }
+#+HTML_HEAD: </style>
+
+- [[file:lesson_0.org][Lesson 0: How Do I Run Code?]]
