@@ -1,7 +1,6 @@
 #+TITLE: Lesson 0: How Do I Run Code?
 #+AUTHOR: Gabriel Cardozo
 #+PROPERTY: header-args :results raw verbatim output :post output_drawer(data=*this*) :noweb strip-export
-# #+EXPORT_FILE_NAME: exports/{{{input-file}}}
 #+HTML_HEAD: <style>
 #+HTML_HEAD: body { background-color:#181825; color:#cdd6f4 }
 #+HTML_HEAD: pre { background-color:#11111b }
