@@ -70,7 +70,7 @@ Homebrew is a fancy package manager that is popular on MacOS (although it also w
 
 Follow [[https://brew.sh/][this link]] for instructions on how to install Homebrew - they will ask you to copy paste a command into the terminal.
 
-Once you have Homebrew installed, you'll need to install python! There are also instructions on how to install software using Homebrew on that page - but we aren't looking to install ~wget~, we want ~python3~! Give ~brew edit wget~ a try.
+Once you have Homebrew installed, you'll need to install python! There are also instructions on how to install software using Homebrew on that page - but we aren't looking to install ~wget~, we want ~python3~! Give ~brew install python3~ a try.
 
 Once that is done, follow the above instructions to check if Python is installed.
 
