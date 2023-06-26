@@ -1,4 +1,4 @@
-#+TITLE: Index
+#+TITLE: Lessons Summer of 2023
 #+AUTHOR: Gabriel Cardozo
 #+HTML_HEAD: <style>
 #+HTML_HEAD: body { background-color:#181825; color:#cdd6f4 }
@@ -6,5 +6,5 @@
 #+HTML_HEAD: a { color:#89b4fa }
 #+HTML_HEAD: ol ol { list-style-type: lower-alpha }
 #+HTML_HEAD: </style>
-
+The following lessons are a crash course in Python programming. As they were written for specific members of my family who I know use MacOS, anything related to tooling will assume the reader is on that, or at least a UNIX-y, operating system.
 - [[file:lesson_0.org][Lesson 0: How Do I Run Code?]]
