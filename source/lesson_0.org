@@ -262,7 +262,7 @@ If you enter lines of code which do not print anything ordinarily, but evaluate 
 #+HTML: </details>
 :end:
 
-You may also run the Python interpreter in interactive mode by passing it the ~-i~ interactive flag. This allowd you to run source code files, but stay in interactive mode after they run, by running them like so: ~python3 -i lesson_0.py~.
+You may also run the Python interpreter in interactive mode by passing it the ~-i~ interactive flag. This allows you to run source code files, but stay in interactive mode after they run, by running them like so: ~python3 -i lesson_0.py~.
 
 The interactive interpreter is useful for exploring how the language works. I recommend tinkering with it whenever you wonder what a line of code will do.
 
