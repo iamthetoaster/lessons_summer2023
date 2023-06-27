@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-06-26 Mon 11:01 -->
+<!-- 2023-06-27 Tue 11:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 0: How Do I Run Code?</title>
@@ -233,6 +233,7 @@ ol ol { list-style-type: lower-alpha }
 <li><a href="#org35afe18">2.2.1. Running Code In The Terminal</a></li>
 <li><a href="#org66b8ae1">2.2.2. Running Code Using IDE Features</a></li>
 <li><a href="#orga8c1cfc">2.2.3. Running an Executable Script</a></li>
+<li><a href="#org0b3efe8">2.2.4. Using The Interactive Interpreter</a></li>
 </ul>
 </li>
 </ul>
@@ -543,8 +544,71 @@ You may also be able to execute the program by double clicking on it in Finder. 
 </p>
 </div>
 </div>
+<div id="outline-container-org0b3efe8" class="outline-4">
+<h4 id="org0b3efe8"><span class="section-number-4">2.2.4.</span> Using The Interactive Interpreter</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+This last method of running Python code is a little different. Rather than writing a source code file and running it, you can open the interpreter in an interactive mode. In this mode, you can enter lines of code one at a time, and see what they do immediately.
+</p>
+
+<p>
+There are two ways to enter the interactive interpreter. The first way is to run the <code>python3</code> command with no arguments. The results should look something like the following:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ python3
+Python 3.10.11 <span style="color: #f38ba8;">(</span>main, Apr  <span style="color: #fab387;">4</span> 2023, 22:10:32<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">[</span>GCC 12.2.0<span style="color: #f38ba8;">]</span> on linux
+Type <span style="color: #a6e3a1;">"help"</span>, <span style="color: #a6e3a1;">"copyright"</span>, <span style="color: #a6e3a1;">"credits"</span> or <span style="color: #a6e3a1;">"license"</span> for more information.
+&gt;&gt;&gt;
+</pre>
+</div>
+
+<p>
+You should be able to type after the <code>&gt;&gt;&gt;</code>. There, you may enter lines of Python which will be run immediately. Give it a shot!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Hello Interpreter!"</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Hello Interpreter!
+</pre>
+</div>
+</details>
+
+<p>
+If you enter lines of code which do not print anything ordinarily, but evaluate to a result, the interpreter will print the result of that evaluation. (More on evaluation when we get to actual lessons!)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fab387;">1</span> + <span style="color: #fab387;">2</span> * <span style="color: #fab387;">3</span> - <span style="color: #fab387;">4</span>
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">3
+</pre>
+</div>
+</details>
+
+<p>
+You may also run the Python interpreter in interactive mode by passing it the <code>-i</code> interactive flag. This allowd you to run source code files, but stay in interactive mode after they run, by running them like so: <code>python3 -i lesson_0.py</code>.
+</p>
+
+<p>
+The interactive interpreter is useful for exploring how the language works. I recommend tinkering with it whenever you wonder what a line of code will do.
+</p>
 </div>
 </div>
+</div>
+</div>
+
 <div id="outline-container-orgc30a2e5" class="outline-2">
 <h2 id="orgc30a2e5"><span class="section-number-2">3.</span> You Did It!</h2>
 <div class="outline-text-2" id="text-3">
@@ -556,7 +620,7 @@ By following these instructions you should be able to get set up to write and ru
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-06-26 Mon 11:01</p>
+<p class="date">Created: 2023-06-27 Tue 11:16</p>
 </div>
 </body>
 </html>
