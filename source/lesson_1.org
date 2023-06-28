@@ -1,4 +1,4 @@
-#+TITLE: Lesson 0: How Do I Run Code?
+#+TITLE: Lesson 1: The Basic Basics
 #+AUTHOR: Gabriel Cardozo
 #+PROPERTY: header-args :results raw verbatim output :post output_drawer(data=*this*) :noweb strip-export
 #+HTML_HEAD: <style>
@@ -20,3 +20,235 @@ echo '#+HTML: </details>'
 echo ':end:'
 #+END_SRC
 
+#+NAME: session_output_drawer
+#+BEGIN_SRC shell :var data="" :exports none :results silent :results output :post
+echo ':results:'
+echo '#+HTML: <details>'
+echo '#+HTML: <summary>Output</summary>'
+echo '#+BEGIN_SRC'
+echo "$data"
+echo '#+END_SRC'
+echo '#+HTML: </details>'
+echo ':end:'
+#+END_SRC
+
+
+
+We'll start with some basic language features, which you are likely to use in almost any program you write.
+
+* The Types of Pieces of Code
+** Statements
+A statement, in programming, is a line of code that alters the state of the world. You have already written a statement:
+#+BEGIN_SRC python :exports both
+print("Hello World!")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Hello World!
+#+END_SRC
+#+HTML: </details>
+:end:
+
+This alters the state of the world by sticking information into the standard output. You will learn about more sorts of useful statements in this lesson.
+
+The following statement, as we will see, is also an expression. It waits for the user to type some data into the terminal:
+#+NAME: fake-input
+#+BEGIN_SRC python :exports none
+def input(prompt):
+    print(prompt + "Harold")
+    return "Harold"
+#+END_SRC
+
+#+RESULTS: fake-input
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+#+END_SRC
+#+HTML: </details>
+:end:
+
+#+BEGIN_SRC python :exports both
+<<fake-input>>
+input("Enter your name: ")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Enter your name: Harold
+#+END_SRC
+#+HTML: </details>
+:end:
+
+If you entered this line into the interactive interpreter, you will see one more line of output:
+#+BEGIN_SRC output :post :eval never
+'Harold'
+#+END_SRC
+
+This is because the input statement is also an expression. Continue for more information on expressions.
+
+** Expressions
+An expression is something that evaluates to a value. You have already written a simple expression inside the statement above:
+#+BEGIN_SRC python :results value :session :post session_output_drawer(data=*this*)
+"Hello World!"
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Hello World!
+#+END_SRC
+#+HTML: </details>
+:end:
+Any value in Python is itself a simple sort of expression that evaluates to itself.
+
+If you did the section on using the interactive interpreter in lesson 0, then you have written a more complicated expression:
+#+BEGIN_SRC python :exports both :results value :session :post session_output_drawer(data=*this*)
+1 + 2 * 3 - 4
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+3
+#+END_SRC
+#+HTML: </details>
+:end:
+
+This expression is actually composed of several expressions! The expression ~1 + 2 * 3 - 4~ is composed of the expression ~1 + 2 * 3~, the operator ~-~, and the expression ~4~. Likewise, the expression ~1 + 2 * 3~ is itself composed of the expression ~1~, the operator ~+~, and the expression ~2 * 3~.
+
+This recursive evaluation of expressions is a really powerful tool!
+** Comments
+A comment is a ~#~, typically called a "hash," and anything on the line after it. Comments are ignored by the Python interpreter. Comments are used to explain why your code is the way it is. They are also sometimes used to block sections of code from being run, without deleting them.
+#+BEGIN_SRC python
+# The following code should not run:
+# print("If you see this message, be worried")
+#+END_SRC
+If you did the section of lesson zero on running an executable script, this may look familiar to you!
+
+* Variables
+A variable is a name associated with some data. To create a variable in Python, you write a statement, composed of the variable's name, an equals sign, and an expression. Let's try it in the interpreter:
+#+BEGIN_SRC python :session variables :results value :post session_output_drawer(data=*this*)
+var = 1
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+
+#+END_SRC
+#+HTML: </details>
+:end:
+
+Note that this should not output anything, as it is a statement, and not one that prints. After you create a variable, its name becomes an expression:
+#+BEGIN_SRC python :exports both :session variables :results value :post session_output_drawer(data=*this*)
+var
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+1
+#+END_SRC
+#+HTML: </details>
+:end:
+
+You can use that expression in more complex expressions:
+#+BEGIN_SRC python :exports both :session variables :results value :post session_output_drawer(data=*this*)
+var + 10
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+11
+#+END_SRC
+#+HTML: </details>
+:end:
+
+You can use those expressions in variable declarations:
+#+BEGIN_SRC python :session variables :results value :post session_output_drawer(data=*this*)
+var2 = var + 10
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+
+#+END_SRC
+#+HTML: </details>
+:end:
+
+...and so on and so on.
+
+You can also change the contents of a variable, the same way you created it:
+
+#+BEGIN_SRC python :session variables :exports both :results value :post session_output_drawer(data=*this*)
+var2 = var2 - 2 * var
+var2
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+9
+#+END_SRC
+#+HTML: </details>
+:end:
+
+This next part will work in the interactive interpreter, or outside of it.
+
+Remember how I mentioned that input statement was also an expression? Let's try using it in a variable.
+#+BEGIN_SRC python :exports both
+<<fake-input>>
+name = input("What is your name? ")
+print(name)
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+What is your name? Harold
+Harold
+#+END_SRC
+#+HTML: </details>
+:end:
+The input expression evaluates to the value the user typed in. This will come in handy when we want to make interactive programs!
+
+Data comes in different types, which have work in different kinds of expressions.
+#+BEGIN_SRC python
+number = 10              # Number is an integer, or whole number
+number = 20.0            # Number is a float, short for floating point, or decimal number
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+#+END_SRC
+#+HTML: </details>
+:end:

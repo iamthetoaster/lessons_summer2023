@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-06-27 Tue 10:51 -->
+<!-- 2023-06-28 Wed 14:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lesson 0: How Do I Run Code?</title>
+<title>Lesson 1: The Basic Basics</title>
 <meta name="author" content="Gabriel Cardozo" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -202,12 +202,254 @@ ol ol { list-style-type: lower-alpha }
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Lesson 0: How Do I Run Code?</h1>
+<h1 class="title">Lesson 1: The Basic Basics</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf75d2a7">1. The Types of Pieces of Code</a>
+<ul>
+<li><a href="#org7b10277">1.1. Statements</a></li>
+<li><a href="#org178ed84">1.2. Expressions</a></li>
+<li><a href="#org52ad904">1.3. Comments</a></li>
+</ul>
+</li>
+<li><a href="#org8a0f4c9">2. Variables</a></li>
+</ul>
+</div>
+</div>
+<p>
+We&rsquo;ll start with some basic language features, which you are likely to use in almost any program you write.
+</p>
 
+<div id="outline-container-orgf75d2a7" class="outline-2">
+<h2 id="orgf75d2a7"><span class="section-number-2">1.</span> The Types of Pieces of Code</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org7b10277" class="outline-3">
+<h3 id="org7b10277"><span class="section-number-3">1.1.</span> Statements</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+A statement, in programming, is a line of code that alters the state of the world. You have already written a statement:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Hello World!"</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Hello World!
+</pre>
+</div>
+</details>
+
+<p>
+This alters the state of the world by sticking information into the standard output. You will learn about more sorts of useful statements in this lesson.
+</p>
+
+<p>
+The following statement, as we will see, is also an expression. It waits for the user to type some data into the terminal:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #f38ba8;">input</span>(<span style="color: #a6e3a1;">"Enter your name: "</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Enter your name: Harold
+</pre>
+</div>
+</details>
+
+<p>
+If you entered this line into the interactive interpreter, you will see one more line of output:
+</p>
+<div class="org-src-container">
+<pre class="src src-output">'Harold'
+</pre>
+</div>
+
+<p>
+This is because the input statement is also an expression. Continue for more information on expressions.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org178ed84" class="outline-3">
+<h3 id="org178ed84"><span class="section-number-3">1.2.</span> Expressions</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+An expression is something that evaluates to a value. You have already written a simple expression inside the statement above:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #6c7086;">"Hello World!"</span>
+</pre>
+</div>
+<p>
+Any value in Python is itself a simple sort of expression that evaluates to itself.
+</p>
+
+<p>
+If you did the section on using the interactive interpreter in lesson 0, then you have written a more complicated expression:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fab387;">1</span> + <span style="color: #fab387;">2</span> * <span style="color: #fab387;">3</span> - <span style="color: #fab387;">4</span>
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">3
+</pre>
+</div>
+</details>
+
+<p>
+This expression is actually composed of several expressions! The expression <code>1 + 2 * 3 - 4</code> is composed of the expression <code>1 + 2 * 3</code>, the operator <code>-</code>, and the expression <code>4</code>. Likewise, the expression <code>1 + 2 * 3</code> is itself composed of the expression <code>1</code>, the operator <code>+</code>, and the expression <code>2 * 3</code>.
+</p>
+
+<p>
+This recursive evaluation of expressions is a really powerful tool!
+</p>
+</div>
+</div>
+<div id="outline-container-org52ad904" class="outline-3">
+<h3 id="org52ad904"><span class="section-number-3">1.3.</span> Comments</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+A comment is a <code>#</code>, typically called a &ldquo;hash,&rdquo; and anything on the line after it. Comments are ignored by the Python interpreter. Comments are used to explain why your code is the way it is. They are also sometimes used to block sections of code from being run, without deleting them.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #6c7086;"># </span><span style="color: #6c7086;">The following code should not run:</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">print("If you see this message, be worried")</span>
+</pre>
+</div>
+<p>
+If you did the section of lesson zero on running an executable script, this may look familiar to you!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8a0f4c9" class="outline-2">
+<h2 id="org8a0f4c9"><span class="section-number-2">2.</span> Variables</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A variable is a name associated with some data. To create a variable in Python, you write a statement, composed of the variable&rsquo;s name, an equals sign, and an expression. Let&rsquo;s try it in the interpreter:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">var</span> = <span style="color: #fab387;">1</span>
+</pre>
+</div>
+
+<p>
+Note that this should not output anything, as it is a statement, and not one that prints. After you create a variable, its name becomes an expression:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">var
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">1
+</pre>
+</div>
+</details>
+
+<p>
+You can use that expression in more complex expressions:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">var + <span style="color: #fab387;">10</span>
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">11
+</pre>
+</div>
+</details>
+
+<p>
+You can use those expressions in variable declarations:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">var2</span> = var + <span style="color: #fab387;">10</span>
+</pre>
+</div>
+
+<p>
+&#x2026;and so on and so on.
+</p>
+
+<p>
+You can also change the contents of a variable, the same way you created it:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">var2</span> = var2 - <span style="color: #fab387;">2</span> * var
+var2
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">9
+</pre>
+</div>
+</details>
+
+<p>
+This next part will work in the interactive interpreter, or outside of it.
+</p>
+
+<p>
+Remember how I mentioned that input statement was also an expression? Let&rsquo;s try using it in a variable.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #cdd6f4;">name</span> = <span style="color: #f38ba8;">input</span>(<span style="color: #a6e3a1;">"What is your name? "</span>)
+<span style="color: #f38ba8;">print</span>(name)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">What is your name? Harold
+Harold
+</pre>
+</div>
+</details>
+<p>
+The input expression evaluates to the value the user typed in. This will come in handy when we want to make interactive programs!
+</p>
+
+<p>
+Data comes in different types, which have work in different kinds of expressions.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">number</span> = <span style="color: #fab387;">10</span>              <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Number is an integer, or whole number</span>
+<span style="color: #cdd6f4;">number</span> = <span style="color: #fab387;">20.0</span>            <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Number is a float, short for floating point, or decimal number</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-06-27 Tue 10:51</p>
+<p class="date">Created: 2023-06-28 Wed 14:32</p>
 </div>
 </body>
 </html>
