@@ -1,12 +1,5 @@
 #+TITLE: Lesson 0: How Do I Run Code?
-#+AUTHOR: Gabriel Cardozo
 #+PROPERTY: header-args :results raw verbatim output :post output_drawer(data=*this*) :noweb strip-export
-#+HTML_HEAD: <style>
-#+HTML_HEAD: body { background-color:#181825; color:#cdd6f4 }
-#+HTML_HEAD: pre { background-color:#11111b }
-#+HTML_HEAD: a { color:#89b4fa }
-#+HTML_HEAD: ol ol { list-style-type: lower-alpha }
-#+HTML_HEAD: </style>
 
 #+NAME: output_drawer
 #+BEGIN_SRC shell :var data="" :exports none :results silent :results output :post

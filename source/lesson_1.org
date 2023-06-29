@@ -1,12 +1,5 @@
 #+TITLE: Lesson 1: The Basic Basics
-#+AUTHOR: Gabriel Cardozo
 #+PROPERTY: header-args :results raw verbatim output :post output_drawer(data=*this*) :noweb strip-export
-#+HTML_HEAD: <style>
-#+HTML_HEAD: body { background-color:#181825; color:#cdd6f4 }
-#+HTML_HEAD: pre { background-color:#11111b }
-#+HTML_HEAD: a { color:#89b4fa }
-#+HTML_HEAD: ol ol { list-style-type: lower-alpha }
-#+HTML_HEAD: </style>
 
 #+NAME: output_drawer
 #+BEGIN_SRC shell :var data="" :exports none :results silent :results output :post
@@ -240,8 +233,15 @@ The input expression evaluates to the value the user typed in. This will come in
 
 Data comes in different types, which have work in different kinds of expressions.
 #+BEGIN_SRC python
-number = 10              # Number is an integer, or whole number
-number = 20.0            # Number is a float, short for floating point, or decimal number
+number = 10               # number is an integer, or whole number
+number = 20.0             # number is a float, short for floating point, or decimal number
+print(number - 5)         # Both number types can be used with the usual math operations
+word = "Thirty"           # word is a string
+print(word + " thousand") # Using the + sign with strings concatenates, or combines them
+li = [40, 41, 42, 43]     # li is a list
+print(li[2])              # Using the bracket operator with lists accesses elements within them
+condition = False         # condition is a boolean, or True or False value
+print(condition or True)  # booleans can be used with logical operators 'and' and 'or'
 #+END_SRC
 
 #+RESULTS:

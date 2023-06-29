@@ -10,7 +10,12 @@
          :publishing-function org-html-publish-to-html
          :headline-levels 4             ; just the default for this project.
          :auto-preamble t
-          :auto-sitemap nil
+         :auto-sitemap t
+         :sitemap-filename "index.org"
+         :sitemap-title "Lessons Summer of 2023"
+         :html-head "<link rel=\"stylesheet\" href=\"style.css\">"
+         :author "Gabriel Cardozo"
+         ; :property "header-args :results raw verbatim output :post output_drawer(data=*this*) :noweb strip-export" TODO: Think about how to make this work?
          )
         ("summer2023-static"
          :base-directory "./source/"

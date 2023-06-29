@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-06-28 Wed 14:32 -->
+<!-- 2023-06-29 Thu 12:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 1: The Basic Basics</title>
@@ -193,12 +193,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<style>
-body { background-color:#181825; color:#cdd6f4 }
-pre { background-color:#11111b }
-a { color:#89b4fa }
-ol ol { list-style-type: lower-alpha }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="content" class="content">
@@ -440,8 +435,15 @@ The input expression evaluates to the value the user typed in. This will come in
 Data comes in different types, which have work in different kinds of expressions.
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #cdd6f4;">number</span> = <span style="color: #fab387;">10</span>              <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Number is an integer, or whole number</span>
-<span style="color: #cdd6f4;">number</span> = <span style="color: #fab387;">20.0</span>            <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Number is a float, short for floating point, or decimal number</span>
+<pre class="src src-python"><span style="color: #cdd6f4;">number</span> = <span style="color: #fab387;">10</span>               <span style="color: #6c7086;"># </span><span style="color: #6c7086;">number is an integer, or whole number</span>
+<span style="color: #cdd6f4;">number</span> = <span style="color: #fab387;">20.0</span>             <span style="color: #6c7086;"># </span><span style="color: #6c7086;">number is a float, short for floating point, or decimal number</span>
+<span style="color: #f38ba8;">print</span>(number - <span style="color: #fab387;">5</span>)         <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Both number types can be used with the usual math operations</span>
+<span style="color: #cdd6f4;">word</span> = <span style="color: #a6e3a1;">"Thirty"</span>           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">word is a string</span>
+<span style="color: #f38ba8;">print</span>(word + <span style="color: #a6e3a1;">" thousand"</span>) <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Using the + sign with strings concatenates, or combines them</span>
+<span style="color: #cdd6f4;">li</span> = [<span style="color: #fab387;">40</span>, <span style="color: #fab387;">41</span>, <span style="color: #fab387;">42</span>, <span style="color: #fab387;">43</span>]     <span style="color: #6c7086;"># </span><span style="color: #6c7086;">li is a list</span>
+<span style="color: #f38ba8;">print</span>(li[<span style="color: #fab387;">2</span>])              <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Using the bracket operator with lists accesses elements within them</span>
+<span style="color: #cdd6f4;">condition</span> = <span style="color: #fab387;">False</span>         <span style="color: #6c7086;"># </span><span style="color: #6c7086;">condition is a boolean, or True or False value</span>
+<span style="color: #f38ba8;">print</span>(condition <span style="color: #cba6f7;">or</span> <span style="color: #fab387;">True</span>)  <span style="color: #6c7086;"># </span><span style="color: #6c7086;">booleans can be used with logical operators 'and' and 'or'</span>
 </pre>
 </div>
 </div>
@@ -449,7 +451,7 @@ Data comes in different types, which have work in different kinds of expressions
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-06-28 Wed 14:32</p>
+<p class="date">Created: 2023-06-29 Thu 12:10</p>
 </div>
 </body>
 </html>
