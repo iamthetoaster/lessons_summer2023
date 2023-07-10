@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-07-10 Mon 10:59 -->
+<!-- 2023-07-10 Mon 12:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 1: The Basic Basics</title>
@@ -215,6 +215,7 @@
 <li><a href="#org839905e">2.2. Control Flow Statements</a>
 <ul>
 <li><a href="#org25a2f4f">2.2.1. If Statements</a></li>
+<li><a href="#org9657795">2.2.2. While Statements</a></li>
 </ul>
 </li>
 </ul>
@@ -588,12 +589,68 @@ That&rsquo;s a little more clean.
 </p>
 </div>
 </div>
+
+<div id="outline-container-org9657795" class="outline-4">
+<h4 id="org9657795"><span class="section-number-4">2.2.2.</span> While Statements</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+While statements are kind of like repeated if statements (without the else.) A while statement is composed of the <code>while</code> keyword, a condition, a colon, and a code block. When control flow reaches a while statement, it checks if the condition expression evaluates to true. If it is true, it enters the while statement, executes the body of the while statement, and then jumps back to directly before the while statement, so that it can check the condition again. If the condition evaluates to false, it skips the while statement. Here is an example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">count</span> = <span style="color: #fab387;">0</span>
+<span style="color: #cba6f7;">while</span> count &lt; <span style="color: #fab387;">10</span>:
+    <span style="color: #f38ba8;">print</span>(count)
+    <span style="color: #cdd6f4;">count</span> = count + <span style="color: #fab387;">1</span>
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre>
+</div>
+</details>
+
+<p>
+While statements can be used with user input to create an interactive program.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #cdd6f4;">user_input</span> = <span style="color: #a6e3a1;">""</span>
+<span style="color: #cba6f7;">while</span> user_input != <span style="color: #a6e3a1;">"QUIT"</span>:
+    <span style="color: #cdd6f4;">user_input</span> = <span style="color: #f38ba8;">input</span>(<span style="color: #a6e3a1;">"Type 'QUIT' to quit: "</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Type 'QUIT' to quit: Not yet
+Type 'QUIT' to quit: Momentarily
+Type 'QUIT' to quit: QUIT
+</pre>
+</div>
+</details>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-07-10 Mon 10:59</p>
+<p class="date">Created: 2023-07-10 Mon 12:01</p>
 </div>
 </body>
 </html>

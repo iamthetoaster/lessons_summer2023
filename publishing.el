@@ -14,6 +14,7 @@
          :sitemap-filename "index.org"
          :sitemap-title "Lessons Summer of 2023"
          :html-head "<link rel=\"stylesheet\" href=\"style.css\">"
+         ; :html-link-home "./index.html"
          :author "Gabriel Cardozo"
          ; :property "header-args :results raw verbatim output :post output_drawer(data=*this*) :noweb strip-export" TODO: Think about how to make this work?     :auto-sitemap nil
          )
