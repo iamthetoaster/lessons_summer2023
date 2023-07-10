@@ -249,6 +249,10 @@ print(condition or True)  # booleans can be used with logical operators 'and' an
 #+HTML: <details>
 #+HTML: <summary>Output</summary>
 #+BEGIN_SRC
+15.0
+Thirty thousand
+42
+True
 #+END_SRC
 #+HTML: </details>
 :end:
