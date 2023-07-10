@@ -29,7 +29,7 @@ echo ':end:'
 
 We'll start with some basic language features, which you are likely to use in almost any program you write.
 
-* The Types of Pieces of Code
+* The Types of Segments of Code
 ** Statements
 A statement, in programming, is a line of code that alters the state of the world. You have already written a statement:
 #+BEGIN_SRC python :exports both
@@ -130,7 +130,8 @@ A comment is a ~#~, typically called a "hash," and anything on the line after it
 #+END_SRC
 If you did the section of lesson zero on running an executable script, this may look familiar to you!
 
-* Variables
+* Basic Units of Functionality
+** Variables
 A variable is a name associated with some data. To create a variable in Python, you write a statement, composed of the variable's name, an equals sign, and an expression. Let's try it in the interpreter:
 #+BEGIN_SRC python :session variables :results value :post session_output_drawer(data=*this*)
 var = 1
@@ -232,7 +233,7 @@ Harold
 The input expression evaluates to the value the user typed in. This will come in handy when we want to make interactive programs!
 
 Data comes in different types, which have work in different kinds of expressions.
-#+BEGIN_SRC python
+#+BEGIN_SRC python :exports both
 number = 10               # number is an integer, or whole number
 number = 20.0             # number is a float, short for floating point, or decimal number
 print(number - 5)         # Both number types can be used with the usual math operations
@@ -256,3 +257,108 @@ True
 #+END_SRC
 #+HTML: </details>
 :end:
+
+** Control Flow Statements
+Most of the time when code runs, it does so one line at a time. We can imagine a spider scuttling down your script, setting off each line it steps on. The path this creature takes is called control flow.
+
+Ordinarily, control flow only goes down. Sometimes, however, we want control flow to run down different paths in different circumstances. There are special statements which can alter control flow, called control flow statements.
+
+*** If Statements
+An if statement splits control flow in two. After the if statement has finished, that split is rejoined. An if statement is composed of the ~if~ keyword, a condition expression (one that evaluates to a boolean), a colon, a code block, the ~else~ keyword, a colon, and another code block. An example follows:
+#+BEGIN_SRC python :exports both
+if 2 + 2 == 4:
+    print("All is well!")
+else:
+    print("Uh oh.")
+    print("Something has gone terribly wrong...")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+All is well!
+#+END_SRC
+#+HTML: </details>
+:end:
+
+There are a couple points of interest here.
+
+First, the double equals sign. In most programming languages, ~=~ is a statement, whereas ~==~ is a question. ~color = 'red'~ means "color is 'red'!" ~color == 'red'~ means "color is 'red'?"
+
+Second, the code blocks. In Python, you form a code block by indenting several contiguous lines of statements such that they begin the same distance from the left. Use the tab key to insert whitespace which can be used to indent lines of code. Most editors will automatically insert whitespace when you make a new line so that you may continue a code block.
+
+That's interesting - an if statement is a statement composed of statements! That means we can put an if statement inside another if statement.
+
+#+BEGIN_SRC python :exports both
+if 2 + 2 != 5:
+    print("Things are looking good so far!")
+    if 2 + 2 == 3:
+        print("Aw hell.")
+    else:
+        print("Still fine!")
+else:
+    print("Well that isn't right...")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Things are looking good so far
+Still fine!
+#+END_SRC
+#+HTML: </details>
+:end:
+
+Note that in Python, and many other programming languages, ~!~ means not. We can project from that that ~!=~ means "is not", or "doesn't equal."
+
+Sometimes we don't really want to do anything in the ~else~ block. There are two ways to make that happen: the bad way, and the good way.
+
+First, the bad way. The ~pass~ statement is a special statement that doesn't do anything. Sometimes this is useful when you haven't decided what a block of code should do yet, but you need to have it.
+
+#+BEGIN_SRC python
+<<fake-input>>
+name = input("What is your name? ")
+
+if name == "Guido Van Rossum":
+    print("Greetings, Benevolent Dictator for Life!")
+    print("Oh wait, you were overthrown by a walrus.")
+else:
+    pass
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+What is your name? Harold
+#+END_SRC
+#+HTML: </details>
+:end:
+
+It's nice to know about the ~pass~ keyword, but this method is rarely the best option. As it turns out, we can also just elide the last two lines:
+
+#+BEGIN_SRC python
+<<fake-input>>
+name = input("What is your name? ")
+
+if name == "Guido Van Rossum":
+    print("Greetings, Benevolent Dictator for Life!")
+    print("Oh wait, you were overthrown by a walrus.")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+What is your name? Harold
+#+END_SRC
+#+HTML: </details>
+:end:
+
+That's a little more clean.
