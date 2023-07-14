@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-07-10 Mon 12:01 -->
+<!-- 2023-07-14 Fri 16:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 1: The Basic Basics</title>
@@ -202,22 +202,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7d8c897">1. The Types of Segments of Code</a>
+<li><a href="#orgb741970">1. The Types of Segments of Code</a>
 <ul>
-<li><a href="#org9734645">1.1. Statements</a></li>
-<li><a href="#orgf489e68">1.2. Expressions</a></li>
-<li><a href="#org3273227">1.3. Comments</a></li>
+<li><a href="#org74f69f4">1.1. Statements</a></li>
+<li><a href="#org7ed317d">1.2. Expressions</a></li>
+<li><a href="#orgfe26e8a">1.3. Comments</a></li>
 </ul>
 </li>
-<li><a href="#org7d4ad97">2. Basic Units of Functionality</a>
+<li><a href="#org3972526">2. Basic Units of Functionality</a>
 <ul>
-<li><a href="#org0491341">2.1. Variables</a></li>
-<li><a href="#org839905e">2.2. Control Flow Statements</a>
+<li><a href="#orga432cd1">2.1. Variables</a></li>
+<li><a href="#orgd0ff8ca">2.2. Control Flow Statements</a>
 <ul>
-<li><a href="#org25a2f4f">2.2.1. If Statements</a></li>
-<li><a href="#org9657795">2.2.2. While Statements</a></li>
+<li><a href="#orga8c06ca">2.2.1. If Statements</a></li>
+<li><a href="#org8eef03e">2.2.2. While Statements</a></li>
+<li><a href="#org8ef1b8b">2.2.3. <span class="todo TODO">TODO</span> Visualizing Control Flow</a></li>
 </ul>
 </li>
+<li><a href="#org4554b59">2.3. Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -227,12 +229,12 @@
 We&rsquo;ll start with some basic language features, which you are likely to use in almost any program you write.
 </p>
 
-<div id="outline-container-org7d8c897" class="outline-2">
-<h2 id="org7d8c897"><span class="section-number-2">1.</span> The Types of Segments of Code</h2>
+<div id="outline-container-orgb741970" class="outline-2">
+<h2 id="orgb741970"><span class="section-number-2">1.</span> The Types of Segments of Code</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org9734645" class="outline-3">
-<h3 id="org9734645"><span class="section-number-3">1.1.</span> Statements</h3>
+<div id="outline-container-org74f69f4" class="outline-3">
+<h3 id="org74f69f4"><span class="section-number-3">1.1.</span> Statements</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 A statement, in programming, is a line of code that alters the state of the world. You have already written a statement:
@@ -285,8 +287,8 @@ This is because the input statement is also an expression. Continue for more inf
 </div>
 </div>
 
-<div id="outline-container-orgf489e68" class="outline-3">
-<h3 id="orgf489e68"><span class="section-number-3">1.2.</span> Expressions</h3>
+<div id="outline-container-org7ed317d" class="outline-3">
+<h3 id="org7ed317d"><span class="section-number-3">1.2.</span> Expressions</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 An expression is something that evaluates to a value. You have already written a simple expression inside the statement above:
@@ -324,8 +326,8 @@ This recursive evaluation of expressions is a really powerful tool!
 </p>
 </div>
 </div>
-<div id="outline-container-org3273227" class="outline-3">
-<h3 id="org3273227"><span class="section-number-3">1.3.</span> Comments</h3>
+<div id="outline-container-orgfe26e8a" class="outline-3">
+<h3 id="orgfe26e8a"><span class="section-number-3">1.3.</span> Comments</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 A comment is a <code>#</code>, typically called a &ldquo;hash,&rdquo; and anything on the line after it. Comments are ignored by the Python interpreter. Comments are used to explain why your code is the way it is. They are also sometimes used to block sections of code from being run, without deleting them.
@@ -336,18 +338,18 @@ A comment is a <code>#</code>, typically called a &ldquo;hash,&rdquo; and anythi
 </pre>
 </div>
 <p>
-If you did the section of lesson zero on running an executable script, this may look familiar to you!
+If you did the section of lesson zero on running an executable script, this may look familiar to you! A shebang is a special sort of comment. While it is not read by Python, the operating system does read it, and uses it to figure out how to run the script in that file.
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7d4ad97" class="outline-2">
-<h2 id="org7d4ad97"><span class="section-number-2">2.</span> Basic Units of Functionality</h2>
+<div id="outline-container-org3972526" class="outline-2">
+<h2 id="org3972526"><span class="section-number-2">2.</span> Basic Units of Functionality</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org0491341" class="outline-3">
-<h3 id="org0491341"><span class="section-number-3">2.1.</span> Variables</h3>
+<div id="outline-container-orga432cd1" class="outline-3">
+<h3 id="orga432cd1"><span class="section-number-3">2.1.</span> Variables</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 A variable is a name associated with some data. To create a variable in Python, you write a statement, composed of the variable&rsquo;s name, an equals sign, and an expression. Let&rsquo;s try it in the interpreter:
@@ -474,8 +476,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-org839905e" class="outline-3">
-<h3 id="org839905e"><span class="section-number-3">2.2.</span> Control Flow Statements</h3>
+<div id="outline-container-orgd0ff8ca" class="outline-3">
+<h3 id="orgd0ff8ca"><span class="section-number-3">2.2.</span> Control Flow Statements</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Most of the time when code runs, it does so one line at a time. We can imagine a spider scuttling down your script, setting off each line it steps on. The path this creature takes is called control flow.
@@ -486,8 +488,8 @@ Ordinarily, control flow only goes down. Sometimes, however, we want control flo
 </p>
 </div>
 
-<div id="outline-container-org25a2f4f" class="outline-4">
-<h4 id="org25a2f4f"><span class="section-number-4">2.2.1.</span> If Statements</h4>
+<div id="outline-container-orga8c06ca" class="outline-4">
+<h4 id="orga8c06ca"><span class="section-number-4">2.2.1.</span> If Statements</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 An if statement splits control flow in two. After the if statement has finished, that split is rejoined. An if statement is composed of the <code>if</code> keyword, a condition expression (one that evaluates to a boolean), a colon, a code block, the <code>else</code> keyword, a colon, and another code block. An example follows:
@@ -590,8 +592,8 @@ That&rsquo;s a little more clean.
 </div>
 </div>
 
-<div id="outline-container-org9657795" class="outline-4">
-<h4 id="org9657795"><span class="section-number-4">2.2.2.</span> While Statements</h4>
+<div id="outline-container-org8eef03e" class="outline-4">
+<h4 id="org8eef03e"><span class="section-number-4">2.2.2.</span> While Statements</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 While statements are kind of like repeated if statements (without the else.) A while statement is composed of the <code>while</code> keyword, a condition, a colon, and a code block. When control flow reaches a while statement, it checks if the condition expression evaluates to true. If it is true, it enters the while statement, executes the body of the while statement, and then jumps back to directly before the while statement, so that it can check the condition again. If the condition evaluates to false, it skips the while statement. Here is an example:
@@ -643,14 +645,26 @@ Type 'QUIT' to quit: QUIT
 </pre>
 </div>
 </details>
+
+<p>
+At this stage you have all the information you need to write a simple interactive program! Give the <a href="exercises.html#orgaf822e3">Number Guesser</a> exercise a try.
+</p>
 </div>
 </div>
+
+<div id="outline-container-org8ef1b8b" class="outline-4">
+<h4 id="org8ef1b8b"><span class="section-number-4">2.2.3.</span> <span class="todo TODO">TODO</span> Visualizing Control Flow</h4>
+</div>
+</div>
+
+<div id="outline-container-org4554b59" class="outline-3">
+<h3 id="org4554b59"><span class="section-number-3">2.3.</span> Functions</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-07-10 Mon 12:01</p>
+<p class="date">Created: 2023-07-14 Fri 16:47</p>
 </div>
 </body>
 </html>

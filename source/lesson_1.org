@@ -128,7 +128,7 @@ A comment is a ~#~, typically called a "hash," and anything on the line after it
 # The following code should not run:
 # print("If you see this message, be worried")
 #+END_SRC
-If you did the section of lesson zero on running an executable script, this may look familiar to you!
+If you did the section of lesson zero on running an executable script, this may look familiar to you! A shebang is a special sort of comment. While it is not read by Python, the operating system does read it, and uses it to figure out how to run the script in that file.
 
 * Basic Units of Functionality
 ** Variables
@@ -433,3 +433,9 @@ Type 'QUIT' to quit: QUIT
 #+END_SRC
 #+HTML: </details>
 :end:
+
+At this stage you have all the information you need to write a simple interactive program! Give the [[file:exercises.org::*Number Guesser][Number Guesser]] exercise a try.
+
+*** TODO Visualizing Control Flow
+
+** Functions
