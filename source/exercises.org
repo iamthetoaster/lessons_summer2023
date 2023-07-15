@@ -29,7 +29,7 @@ echo ':end:'
 
 * Number Guesser
 ** Spec
-This program plays a game with the user. The user thinks of a number between one and a hundred. The program guesses that number, and asks whether the guess is correct. The player answers ~y~ or ~n~, for yes or no. If the guess is not correct, the program asks whether the player's number is higher or lower. The player answers ~h~ or ~l~, for higher or lower respectively. This continues until the program guesses the number successfully, or there is no possible number it could be. The program should never guess a number that is impossible if the player has answered honestly the entire time without changing the number.
+This program plays a game with the user. The user thinks of a non-negative number below 100. The program uses some strategy to guess that number, and asks whether the guess is correct. The player answers ~y~ or ~n~, for yes or no. If the guess is not correct, the program asks whether the player's number is higher or lower. The player answers ~h~ or ~l~, for higher or lower respectively. This continues until the program guesses the number successfully, or there is no possible number it could be. The program should never guess a number that is impossible if the player has answered honestly the entire time without changing the number.
 ** Example
 The following is an example of what it might look like to run the program.
 
@@ -54,16 +54,48 @@ def input(prompt):
 input.counter = 0
 #+END_SRC
 
-#+BEGIN_SRC python :exports output
+#+BEGIN_SRC python :results drawer :exports results :post
+import random
+random.seed(11)
 <<fake-inputs-number-guesser>>
 # TODO
+lo = 0
+hi = 100
+while True:
+    if (lo >= hi):
+        print("There is no number this could be!")
+        break
+    guess = random.randrange(lo, hi)
+    user_input = None
+    while user_input not in ["y", "n"]:
+        if user_input is not None:
+           print("Your answer should be either 'y' or 'n'")
+        user_input = input(f"Is your number {guess}? (y/n) ")
+    if user_input == "y":
+        print("Hurray!")
+        break
+    user_input = None
+    while user_input not in ["l", "h"]:
+        if user_input is not None:
+           print("Your answer should be either 'l' or 'h'")
+        user_input = input(f"Is your number lower or higher? (l/h) ")
+    if user_input == "h":
+        lo = guess + 1
+    else:
+        hi = guess
+
 #+END_SRC
 
 #+RESULTS:
 :results:
-#+HTML: <details>
-#+HTML: <summary>Output</summary>
-#+BEGIN_SRC
-#+END_SRC
-#+HTML: </details>
+Is your number 57? (y/n) n
+Is your number lower or higher? (l/h) h
+Is your number 93? (y/n) n
+Is your number lower or higher? (l/h) l
+Is your number 87? (y/n) n
+Is your number lower or higher? (l/h) l
+Is your number 72? (y/n) n
+Is your number lower or higher? (l/h) h
+Is your number 81? (y/n) y
+Hurray!
 :end:

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-07-14 Fri 16:47 -->
+<!-- 2023-07-15 Sat 16:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exercises</title>
@@ -220,7 +220,7 @@
 <h3 id="orgca779df"><span class="section-number-3">1.1.</span> Spec</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-This program plays a game with the user. The user thinks of a number between one and a hundred. The program guesses that number, and asks whether the guess is correct. The player answers <code>y</code> or <code>n</code>, for yes or no. If the guess is not correct, the program asks whether the player&rsquo;s number is higher or lower. The player answers <code>h</code> or <code>l</code>, for higher or lower respectively. This continues until the program guesses the number successfully, or there is no possible number it could be. The program should never guess a number that is impossible if the player has answered honestly the entire time without changing the number.
+This program plays a game with the user. The user thinks of a non-negative number below 100. The program uses some strategy to guess that number, and asks whether the guess is correct. The player answers <code>y</code> or <code>n</code>, for yes or no. If the guess is not correct, the program asks whether the player&rsquo;s number is higher or lower. The player answers <code>h</code> or <code>l</code>, for higher or lower respectively. This continues until the program guesses the number successfully, or there is no possible number it could be. The program should never guess a number that is impossible if the player has answered honestly the entire time without changing the number.
 </p>
 </div>
 </div>
@@ -231,26 +231,25 @@ This program plays a game with the user. The user thinks of a number between one
 The following is an example of what it might look like to run the program.
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python">&lt;&lt;fake-inputs-number-guesser&gt;&gt;
-<span style="color: #6c7086;"># </span><span style="color: #f9e2af; font-weight: bold;">TODO</span>
-</pre>
-</div>
-
-<details>
-<summary>Output</summary>
-<div class="org-src-container">
-<pre class="src src-nil">
-</pre>
-</div>
-</details>
+<p>
+Is your number 57? (y/n) n
+Is your number lower or higher? (l/h) h
+Is your number 93? (y/n) n
+Is your number lower or higher? (l/h) l
+Is your number 87? (y/n) n
+Is your number lower or higher? (l/h) l
+Is your number 72? (y/n) n
+Is your number lower or higher? (l/h) h
+Is your number 81? (y/n) y
+Hurray!
+</p>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-07-14 Fri 16:47</p>
+<p class="date">Created: 2023-07-15 Sat 16:17</p>
 </div>
 </body>
 </html>
