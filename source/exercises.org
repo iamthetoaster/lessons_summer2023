@@ -54,7 +54,7 @@ def input(prompt):
 input.counter = 0
 #+END_SRC
 
-#+BEGIN_SRC python :results drawer :exports results :post
+#+BEGIN_SRC python :results drawer :exports results :post :wrap SRC
 import random
 random.seed(11)
 <<fake-inputs-number-guesser>>
@@ -87,7 +87,7 @@ while True:
 #+END_SRC
 
 #+RESULTS:
-:results:
+#+begin_SRC
 Is your number 57? (y/n) n
 Is your number lower or higher? (l/h) h
 Is your number 93? (y/n) n
@@ -98,4 +98,4 @@ Is your number 72? (y/n) n
 Is your number lower or higher? (l/h) h
 Is your number 81? (y/n) y
 Hurray!
-:end:
+#+end_SRC
