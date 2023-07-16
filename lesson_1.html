@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-07-14 Fri 16:47 -->
+<!-- 2023-07-15 Sat 22:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 1: The Basic Basics</title>
@@ -589,6 +589,34 @@ It&rsquo;s nice to know about the <code>pass</code> keyword, but this method is 
 <p>
 That&rsquo;s a little more clean.
 </p>
+
+<p>
+You can also add an optional <code>elif</code> block to an if statement, between the first <code>if</code> block and the <code>else</code> block, if it exists. <code>elif</code> is short for else if. The <code>elif</code> block executes only if no previous block in the if statement executes, and if a given condition evaluates to <code>True</code>. The following example should make some more sense of this:
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">number</span> = <span style="color: #fab387;">2</span> + <span style="color: #fab387;">2</span>
+<span style="color: #cba6f7;">if</span> number == <span style="color: #fab387;">4</span>:
+    <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"All's well!"</span>)
+<span style="color: #cba6f7;">elif</span> number == <span style="color: #fab387;">3</span> <span style="color: #cba6f7;">or</span> number == <span style="color: #fab387;">5</span>:
+    <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Classic off by one error."</span>)
+<span style="color: #cba6f7;">else</span>:
+    <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Something is wrong and I don't understand it..."</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">All's well!
+</pre>
+</div>
+</details>
+
+<p>
+If statments are not loops. Whenever I hear the term &ldquo;if loop&rdquo; my lifespan decreases by two minutes.
+</p>
 </div>
 </div>
 
@@ -647,6 +675,38 @@ Type 'QUIT' to quit: QUIT
 </details>
 
 <p>
+While statements are also called while loops, because they can loop a piece of code over and over. Both are correct!
+</p>
+
+<p>
+Usually loops terminate when control flow reaches the top of the loop and the condition evaluates to false. There is, however, another way to exit a loop! The <code>break</code> keyword causes control flow to immediately exit a loop containing it. We can re-structure the above code to use the break statement:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #cdd6f4;">user_input</span> = <span style="color: #a6e3a1;">""</span>
+<span style="color: #cba6f7;">while</span> <span style="color: #fab387;">True</span>:
+    user_input = <span style="color: #f38ba8;">input</span>(<span style="color: #a6e3a1;">"Type 'QUIT' to quit: "</span>)
+    <span style="color: #cba6f7;">if</span> user_input == <span style="color: #a6e3a1;">"QUIT"</span>:
+        <span style="color: #cba6f7;">break</span>
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Type 'QUIT' to quit: Not yet
+Type 'QUIT' to quit: Momentarily
+Type 'QUIT' to quit: QUIT
+</pre>
+</div>
+</details>
+
+<p>
+Note the <code>while True</code>. Without a break statement, that loop will continue forever.
+</p>
+
+<p>
 At this stage you have all the information you need to write a simple interactive program! Give the <a href="exercises.html#orgaf822e3">Number Guesser</a> exercise a try.
 </p>
 </div>
@@ -664,7 +724,7 @@ At this stage you have all the information you need to write a simple interactiv
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-07-14 Fri 16:47</p>
+<p class="date">Created: 2023-07-15 Sat 22:10</p>
 </div>
 </body>
 </html>
