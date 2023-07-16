@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-07-15 Sat 22:10 -->
+<!-- 2023-07-16 Sun 12:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 1: The Basic Basics</title>
@@ -219,7 +219,12 @@
 <li><a href="#org8ef1b8b">2.2.3. <span class="todo TODO">TODO</span> Visualizing Control Flow</a></li>
 </ul>
 </li>
-<li><a href="#org4554b59">2.3. Functions</a></li>
+<li><a href="#org4554b59">2.3. Functions</a>
+<ul>
+<li><a href="#org6a65f87">2.3.1. Using Functions</a></li>
+</ul>
+</li>
+<li><a href="#orgf057336">2.4. Defining Your Own Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -705,10 +710,6 @@ Type 'QUIT' to quit: QUIT
 <p>
 Note the <code>while True</code>. Without a break statement, that loop will continue forever.
 </p>
-
-<p>
-At this stage you have all the information you need to write a simple interactive program! Give the <a href="exercises.html#orgaf822e3">Number Guesser</a> exercise a try.
-</p>
 </div>
 </div>
 
@@ -719,12 +720,200 @@ At this stage you have all the information you need to write a simple interactiv
 
 <div id="outline-container-org4554b59" class="outline-3">
 <h3 id="org4554b59"><span class="section-number-3">2.3.</span> Functions</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+The most valuable resource a programmer manages is cognitive load. (Certainly not computer performance - always remember, programmer time is worth more than computer time!) The more stuff you are looking at, the more brain power it takes to understand it. Functions are a way to reduce how much stuff you are looking at at a time. They package many pieces of code into one, which says what those pieces of code are for.
+</p>
+</div>
+<div id="outline-container-org6a65f87" class="outline-4">
+<h4 id="org6a65f87"><span class="section-number-4">2.3.1.</span> Using Functions</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+You have already used functions! To use a function, you write its name, followed by parentheses, containing any expressions that evaluate to information we want to pass the function. These expressions are called arguments.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #f38ba8;">input</span>(<span style="color: #a6e3a1;">"Are you a Python expert? "</span>)
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Not yet! But you can be!"</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Are you a Python expert? Not yet
+Not yet! But you can be!
+</pre>
+</div>
+</details>
+
+<p>
+These functions are being used as statements. You can also use some functions as expressions!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #cdd6f4;">string_number</span> = <span style="color: #f38ba8;">input</span>(<span style="color: #a6e3a1;">"Enter a number: "</span>)
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">We can't really do math with our number yet</span>
+<span style="color: #f38ba8;">print</span>(string_number + <span style="color: #a6e3a1;">"10"</span>)
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Let's use a function to convert it to an integer!</span>
+<span style="color: #cdd6f4;">whole_number</span> = <span style="color: #f38ba8;">int</span>(string_number)
+<span style="color: #f38ba8;">print</span>(whole_number + <span style="color: #fab387;">10</span>)
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">We can also turn it into a decimal, or floating point number</span>
+<span style="color: #cdd6f4;">decimal_number</span> = <span style="color: #f38ba8;">float</span>(whole_number)
+<span style="color: #f38ba8;">print</span>(decimal_number * <span style="color: #fab387;">3</span>)
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Or back into a string!</span>
+<span style="color: #cdd6f4;">string_decimal</span> = <span style="color: #f38ba8;">str</span>(decimal_number)
+
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Your number was "</span> + string_decimal)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Enter a number: 10
+1010
+20
+30.0
+Your number was 10.0
+</pre>
+</div>
+</details>
+
+<p>
+Functions can take more than one argument. Separate arguments with commas:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #cdd6f4;">first</span>  = <span style="color: #f38ba8;">input</span>(<span style="color: #a6e3a1;">"Enter a number: "</span>)
+second = <span style="color: #f38ba8;">input</span>(<span style="color: #a6e3a1;">"Enter a number: "</span>)
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"The smaller number was "</span> + <span style="color: #f38ba8;">min</span>(first, second))
+
+<span style="color: #cdd6f4;">third</span>  = <span style="color: #f38ba8;">input</span>(<span style="color: #a6e3a1;">"Enter one last number: "</span>)
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"The largest number was "</span> + <span style="color: #f38ba8;">max</span>(first, second, third))
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Enter a number: 10
+Enter a number: 20
+The smaller number was 10
+Enter one last number: 30
+The largest number was 30
+</pre>
+</div>
+</details>
+
+<p>
+Some functions, like <code>min</code> and <code>max</code>, can take lots of different numbers of arguments, but most have a specific number they accept.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">import</span> math <span style="color: #6c7086;"># </span><span style="color: #6c7086;">This statement "imports" symbols from a library</span>
+            <span style="color: #6c7086;"># </span><span style="color: #6c7086;">To use those symbols we use the name of the library and a dot</span>
+<span style="color: #f38ba8;">print</span>(math.sqrt(<span style="color: #fab387;">100</span>))
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">The following would error out</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">print(math.sqrt(200, 300))</span>
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">10.0
+</pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf057336" class="outline-3">
+<h3 id="orgf057336"><span class="section-number-3">2.4.</span> Defining Your Own Functions</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Other people&rsquo;s functions are great, but sometimes we want to define our own. To define a function, we must use the <code>def</code> keyword, the name of the function, parentheses containing a list of named pieces of information the function will want, called parameters, a colon, and a code block called the function body. After the function has been defined, it can be used.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">print_sum_of_squares</span>(a, b):
+    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Python has a power operator, `**`</span>
+    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">The following reads: "a squared is a to the power of two"</span>
+    a_squared = a ** <span style="color: #fab387;">2</span>
+    <span style="color: #cdd6f4;">b_squared</span> = b ** <span style="color: #fab387;">2</span>
+
+    <span style="color: #f38ba8;">print</span> (a_squared + b_squared)
+
+print_sum_of_squares(<span style="color: #fab387;">3</span>, <span style="color: #fab387;">4</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">25
+</pre>
+</div>
+</details>
+
+<p>
+The words &ldquo;parameter&rdquo; and &ldquo;argument&rdquo; are often used interchangeably. Technically, the argument is the actual expression passed into a function when that function is called, whereas a parameter is a name in the function&rsquo;s definition that will be set to the argument at the time the function is called. If you do not remember this, it will be ok. Most people do not.
+</p>
+
+<p>
+The above function is pretty good, but we can do better. Remember that functions exist to reduce how much we have to think. A good function does one &ldquo;thing&rdquo;, so that we don&rsquo;t have to think about the different &ldquo;things&rdquo; it is doing - if you see the word &ldquo;and&rdquo; in a function name, it might make more sense as two functions. Let&rsquo;s simplify the above code.
+</p>
+
+<p>
+To make a function that may be used as an expression, use the <code>return</code> keyword within the function. When control flow reaches the <code>return</code> keyword within a function, it leaves the function immediately, and the expression that called the function evaluates to the expression that was returned.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">sum_of_squares</span>(a, b):
+    <span style="color: #cdd6f4;">a_squared</span> = a ** <span style="color: #fab387;">2</span>
+    <span style="color: #cdd6f4;">b_squared</span> = b ** <span style="color: #fab387;">2</span>
+
+    <span style="color: #cba6f7;">return</span> a_squared + b_squared
+
+<span style="color: #cdd6f4;">square_length</span> = sum_of_squares(<span style="color: #fab387;">3</span>, <span style="color: #fab387;">4</span>)
+<span style="color: #f38ba8;">print</span>(square_length)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">25
+</pre>
+</div>
+</details>
+
+<p>
+Note that this way, we can reuse the value calculated by the function! When we print things to the console, the user can see it, but our program cannot necessarily. In general, I prefer to avoid using <code>print</code> statements within functions, as I consider &ldquo;printing&rdquo; or &ldquo;interacting with the user&rdquo; to be doing a different &ldquo;thing&rdquo; from calculating values or acting on the world.
+</p>
+
+<p>
+I use quotation marks around &ldquo;thing,&rdquo; because what one considers to be a &ldquo;thing&rdquo; is subjective. Use your best judgement. Remember that you don&rsquo;t want to think very hard.
+</p>
+
+<p>
+At this stage you have all the information you need to write a simple interactive program! Give the <a href="exercises.html#orgaf822e3">Number Guesser</a> exercise a try.
+</p>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-07-15 Sat 22:10</p>
+<p class="date">Created: 2023-07-16 Sun 12:12</p>
 </div>
 </body>
 </html>

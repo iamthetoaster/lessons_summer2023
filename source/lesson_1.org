@@ -474,12 +474,10 @@ while True:
 
 Note the ~while True~. Without a break statement, that loop will continue forever.
 
-At this stage you have all the information you need to write a simple interactive program! Give the [[file:exercises.org::*Number Guesser][Number Guesser]] exercise a try.
-
 *** TODO Visualizing Control Flow
 
 ** Functions
-The most valuable resource a programmer manages is cognitive load. The more stuff you are looking at, the more brain power it takes to understand it. Functions are a way to reduce how much stuff you are looking at at a time. They package many pieces of code into one, which says what those pieces of code are for.
+The most valuable resource a programmer manages is cognitive load. (Certainly not computer performance - always remember, programmer time is worth more than computer time!) The more stuff you are looking at, the more brain power it takes to understand it. Functions are a way to reduce how much stuff you are looking at at a time. They package many pieces of code into one, which says what those pieces of code are for.
 *** Using Functions
 You have already used functions! To use a function, you write its name, followed by parentheses, containing any expressions that evaluate to information we want to pass the function. These expressions are called arguments.
 
@@ -499,3 +497,153 @@ Not yet! But you can be!
 #+END_SRC
 #+HTML: </details>
 :end:
+
+These functions are being used as statements. You can also use some functions as expressions!
+
+#+NAME: fake-number-inputs
+#+BEGIN_SRC python :exports none
+def input(prompt):
+    inputs = ["10", "20", "30"]
+    result = inputs[input.counter]
+    input.counter = (input.counter + 1) % len(inputs)
+    print(prompt + result)
+    return result
+input.counter = 0
+#+END_SRC
+
+#+RESULTS: fake-number-inputs
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+#+END_SRC
+#+HTML: </details>
+:end:
+
+#+BEGIN_SRC python :exports both
+<<fake-number-inputs>>
+string_number = input("Enter a number: ")
+# We can't really do math with our number yet
+print(string_number + "10")
+
+# Let's use a function to convert it to an integer!
+whole_number = int(string_number)
+print(whole_number + 10)
+
+# We can also turn it into a decimal, or floating point number
+decimal_number = float(whole_number)
+print(decimal_number * 3)
+
+# Or back into a string!
+string_decimal = str(decimal_number)
+
+print("Your number was " + string_decimal)
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Enter a number: 10
+1010
+20
+30.0
+Your number was 10.0
+#+END_SRC
+#+HTML: </details>
+:end:
+
+Functions can take more than one argument. Separate arguments with commas:
+
+#+BEGIN_SRC python :exports both
+<<fake-number-inputs>>
+first  = input("Enter a number: ")
+second = input("Enter a number: ")
+print("The smaller number was " + min(first, second))
+
+third  = input("Enter one last number: ")
+print("The largest number was " + max(first, second, third))
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Enter a number: 10
+Enter a number: 20
+The smaller number was 10
+Enter one last number: 30
+The largest number was 30
+#+END_SRC
+#+HTML: </details>
+:end:
+
+Some functions, like ~min~ and ~max~, can take lots of different numbers of arguments, but most have a specific number they accept.
+
+#+BEGIN_SRC python :exports both
+import math # This statement "imports" symbols from a library
+            # To use those symbols we use the name of the library and a dot
+print(math.sqrt(100))
+# The following would error out
+# print(math.sqrt(200, 300))
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+10.0
+#+END_SRC
+#+HTML: </details>
+:end:
+
+** Defining Your Own Functions
+Other people's functions are great, but sometimes we want to define our own. To define a function, we must use the ~def~ keyword, the name of the function, parentheses containing a list of named pieces of information the function will want, called parameters, a colon, and a code block called the function body. After the function has been defined, it can be used.
+
+#+BEGIN_SRC python :exports both
+def print_sum_of_squares(a, b):
+    # Python has a power operator, `**`
+    # The following reads: "a squared is a to the power of two"
+    a_squared = a ** 2
+    b_squared = b ** 2
+
+    print (a_squared + b_squared)
+
+print_sum_of_squares(3, 4)
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+25
+#+END_SRC
+#+HTML: </details>
+:end:
+
+The words "parameter" and "argument" are often used interchangeably. Technically, the argument is the actual expression passed into a function when that function is called, whereas a parameter is a name in the function's definition that will be set to the argument at the time the function is called. If you do not remember this, it will be ok. Most people do not.
+
+The above function is pretty good, but we can do better. Remember that functions exist to reduce how much we have to think. A good function does one "thing", so that we don't have to think about the different "things" it is doing - if you see the word "and" in a function name, it might make more sense as two functions. Let's simplify the above code.
+
+To make a function that may be used as an expression, use the ~return~ keyword within the function. When control flow reaches the ~return~ keyword within a function, it leaves the function immediately, and the expression that called the function evaluates to the expression that was returned.
+
+#+BEGIN_SRC python :exports both
+def sum_of_squares(a, b):
+    a_squared = a ** 2
+    b_squared = b ** 2
+
+    return a_squared + b_squared
+
+square_length = sum_of_squares(3, 4)
+print(square_length)
+#+END_SRC
+
+Note that this way, we can reuse the value calculated by the function! When we print things to the console, the user can see it, but our program cannot necessarily. In general, I prefer to avoid using ~print~ statements within functions, as I consider "printing" or "interacting with the user" to be doing a different "thing" from calculating values or acting on the world.
+
+I use quotation marks around "thing," because what one considers to be a "thing" is subjective. Use your best judgement. Remember that you don't want to think very hard.
+
+At this stage you have all the information you need to write a simple interactive program! Give the [[file:exercises.org::*Number Guesser][Number Guesser]] exercise a try.
