@@ -479,3 +479,23 @@ At this stage you have all the information you need to write a simple interactiv
 *** TODO Visualizing Control Flow
 
 ** Functions
+The most valuable resource a programmer manages is cognitive load. The more stuff you are looking at, the more brain power it takes to understand it. Functions are a way to reduce how much stuff you are looking at at a time. They package many pieces of code into one, which says what those pieces of code are for.
+*** Using Functions
+You have already used functions! To use a function, you write its name, followed by parentheses, containing any expressions that evaluate to information we want to pass the function. These expressions are called arguments.
+
+#+BEGIN_SRC python :exports both
+<<fake-inputs>>
+input("Are you a Python expert? ")
+print("Not yet! But you can be!")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Are you a Python expert? Not yet
+Not yet! But you can be!
+#+END_SRC
+#+HTML: </details>
+:end:
