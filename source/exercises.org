@@ -99,3 +99,7 @@ Is your number lower or higher? (l/h) h
 Is your number 81? (y/n) y
 Hurray!
 #+end_SRC
+** Extras
+Try making your program accept more answers than single letters.
+
+Is your program's strategy for guessing numbers as good as it could be? Consider whether it could be refined.
