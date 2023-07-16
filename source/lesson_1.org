@@ -600,7 +600,7 @@ print(math.sqrt(100))
 #+HTML: </details>
 :end:
 
-** Defining Your Own Functions
+*** Defining Your Own Functions
 Other people's functions are great, but sometimes we want to define our own. To define a function, we must use the ~def~ keyword, the name of the function, parentheses containing a list of named pieces of information the function will want, called parameters, a colon, and a code block called the function body. After the function has been defined, it can be used.
 
 #+BEGIN_SRC python :exports both
