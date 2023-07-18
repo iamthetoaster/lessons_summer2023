@@ -1,5 +1,5 @@
-body { background-color:#181825; color:#cdd6f4 }
-pre { background-color:#11111b }
+body { background-color:#181825; color:#cdd6f4; font-family: "Open Sans", sans-serif}
+pre { background-color:#11111b; font-family: Inconsolata, monospace}
 a:link { color:#89b4fa }
 a:visited { color:#b4befe }
 ol ol { list-style-type: lower-alpha }

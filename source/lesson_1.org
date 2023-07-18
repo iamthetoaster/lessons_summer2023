@@ -474,7 +474,86 @@ while True:
 
 Note the ~while True~. Without a break statement, that loop will continue forever.
 
-*** TODO Visualizing Control Flow
+*** Visualizing Control Flow
+We can diagram control flow using a chart. These "flow charts" are used all the time to describe instructions for humans! Consider the following simple piece of code:
+
+#+BEGIN_SRC python :results silent
+line_1
+line_2
+line_2
+#+END_SRC
+
+That code is equivalent to the following flow chart:
+
+#+NAME: dot-style
+#+BEGIN_SRC dot :exports none :results none silent :post
+bgcolor="transparent"
+rankdir="LR"
+node [color="#cdd6f4", regular=true, fontcolor="#11111b", fontname="sans-serif", fillcolor="#89b4fa", style="filled" shape="oval"]
+edge [color="#cdd6f4", fontcolor="#cdd6f4", fontname="sans-serif", arrowhead="normalnone"]
+#+END_SRC
+
+#+BEGIN_SRC dot :file ./images/simple_flow.svg :exports results :cmdline -T svg :results file :post
+strict digraph {
+  <<dot-style>>
+  line_1 -> line_2
+  line_2 -> line_3
+}
+#+END_SRC
+
+#+RESULTS:
+[[file:./images/simple_flow.svg]]
+
+Not very exciting. An if statement is more interesting. Consider the following code:
+
+#+BEGIN_SRC python :results silent
+if condition:
+    this_case
+else:
+    that_case
+afterwards
+#+END_SRC
+
+In flow chart form:
+
+#+BEGIN_SRC dot :file ./images/if_flow.svg :exports results :cmdline -T svg :results file :post
+strict digraph {
+  <<dot-style>>
+  "if condition" [shape="diamond", fillcolor="#f38ba8"]
+  "if condition" -> this_case [label="True"]
+  "if condition" -> that_case [label="False"]
+  {this_case that_case} -> afterwards
+}
+#+END_SRC
+
+#+RESULTS:
+[[file:./images/if_flow.svg]]
+
+While loops are also pretty exciting. Again, consider the following code:
+
+#+BEGIN_SRC python :results silent
+while condition:
+    in_loop
+afterwards
+#+END_SRC
+
+As a flow chart:
+
+#+BEGIN_SRC dot :file ./images/while_flow.svg :exports results :cmdline -T svg :results file :post
+strict digraph {
+  <<dot-style>>
+  while [shape="diamond", fillcolor="#f38ba8", label="while condition"]
+  while -> in_loop [label="True"]
+  in_loop -> while
+  while -> afterwards [label="False"]
+  in_loop -> afterwards [style="invis"]
+}
+#+END_SRC
+
+#+RESULTS:
+[[file:./images/while_flow.svg]]
+
+If you find looking at this easier than looking at pieces of code, try drawing out flow charts yourself! Drawing is one of the most useful tools in a programmer's arsenal.
 
 ** Functions
 The most valuable resource a programmer manages is cognitive load. (Certainly not computer performance - always remember, programmer time is worth more than computer time!) The more stuff you are looking at, the more brain power it takes to understand it. Functions are a way to reduce how much stuff you are looking at at a time. They package many pieces of code into one, which says what those pieces of code are for.

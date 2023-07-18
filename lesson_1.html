@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-07-16 Sun 12:16 -->
+<!-- 2023-07-18 Tue 15:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 1: The Basic Basics</title>
@@ -193,6 +193,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Open Sans">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -216,7 +217,7 @@
 <ul>
 <li><a href="#orga8c06ca">2.2.1. If Statements</a></li>
 <li><a href="#org8eef03e">2.2.2. While Statements</a></li>
-<li><a href="#org8ef1b8b">2.2.3. <span class="todo TODO">TODO</span> Visualizing Control Flow</a></li>
+<li><a href="#org8ef1b8b">2.2.3. Visualizing Control Flow</a></li>
 </ul>
 </li>
 <li><a href="#org4554b59">2.3. Functions</a>
@@ -714,7 +715,77 @@ Note the <code>while True</code>. Without a break statement, that loop will cont
 </div>
 
 <div id="outline-container-org8ef1b8b" class="outline-4">
-<h4 id="org8ef1b8b"><span class="section-number-4">2.2.3.</span> <span class="todo TODO">TODO</span> Visualizing Control Flow</h4>
+<h4 id="org8ef1b8b"><span class="section-number-4">2.2.3.</span> Visualizing Control Flow</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+We can diagram control flow using a chart. These &ldquo;flow charts&rdquo; are used all the time to describe instructions for humans! Consider the following simple piece of code:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">line_1
+line_2
+line_2
+</pre>
+</div>
+
+<p>
+That code is equivalent to the following flow chart:
+</p>
+
+
+<div id="org3667e5a" class="figure">
+<p><img src="./images/simple_flow.svg" alt="simple_flow.svg" class="org-svg" />
+</p>
+</div>
+
+<p>
+Not very exciting. An if statement is more interesting. Consider the following code:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">if</span> condition:
+    this_case
+<span style="color: #cba6f7;">else</span>:
+    that_case
+afterwards
+</pre>
+</div>
+
+<p>
+In flow chart form:
+</p>
+
+
+<div id="orgcf14d3a" class="figure">
+<p><img src="./images/if_flow.svg" alt="if_flow.svg" class="org-svg" />
+</p>
+</div>
+
+<p>
+While loops are also pretty exciting. Again, consider the following code:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">while</span> condition:
+    in_loop
+afterwards
+</pre>
+</div>
+
+<p>
+As a flow chart:
+</p>
+
+
+<div id="orge1fab62" class="figure">
+<p><img src="./images/while_flow.svg" alt="while_flow.svg" class="org-svg" />
+</p>
+</div>
+
+<p>
+If you find looking at this easier than looking at pieces of code, try drawing out flow charts yourself! Drawing is one of the most useful tools in a programmer&rsquo;s arsenal.
+</p>
+</div>
 </div>
 </div>
 
@@ -913,7 +984,7 @@ At this stage you have all the information you need to write a simple interactiv
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-07-16 Sun 12:16</p>
+<p class="date">Created: 2023-07-18 Tue 15:06</p>
 </div>
 </body>
 </html>

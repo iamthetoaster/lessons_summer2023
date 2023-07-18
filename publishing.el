@@ -13,14 +13,15 @@
          :auto-sitemap t
          :sitemap-filename "index.org"
          :sitemap-title "Lessons Summer of 2023"
-         :html-head "<link rel=\"stylesheet\" href=\"style.css\">"
+         :html-head "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Inconsolata|Open Sans\">
+<link rel=\"stylesheet\" href=\"style.css\">"
          ; :html-link-home "./index.html"
          :author "Gabriel Cardozo"
          ; :property "header-args :results raw verbatim output :post output_drawer(data=*this*) :noweb strip-export" TODO: Think about how to make this work?     :auto-sitemap nil
          )
         ("summer2023-static"
          :base-directory "~/org/lessons/summer2023/source/"
-         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|svg"
          :publishing-directory "~/org/lessons/summer2023/"
          :recursive t
          :publishing-function org-publish-attachment
