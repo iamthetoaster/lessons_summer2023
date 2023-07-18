@@ -4,3 +4,4 @@ a:link { color:#89b4fa }
 a:visited { color:#b4befe }
 ol ol { list-style-type: lower-alpha }
 .todo { color:#f38ba8 }
+.org-svg { max-width: 100% }
