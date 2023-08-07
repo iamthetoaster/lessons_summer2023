@@ -1,0 +1,134 @@
+#+TITLE: Lesson 2: Collections
+#+PROPERTY: header-args :results raw verbatim output :post output_drawer(data=*this*) :noweb strip-export
+
+#+NAME: output_drawer
+#+BEGIN_SRC shell :var data="" :exports none :results silent :results output :post
+echo ':results:'
+echo '#+HTML: <details>'
+echo '#+HTML: <summary>Output</summary>'
+echo '#+BEGIN_SRC'
+echo -n "$data"
+echo '#+END_SRC'
+echo '#+HTML: </details>'
+echo ':end:'
+#+END_SRC
+
+#+NAME: session_output_drawer
+#+BEGIN_SRC shell :var data="" :exports none :results silent :results output :post
+echo ':results:'
+echo '#+HTML: <details>'
+echo '#+HTML: <summary>Output</summary>'
+echo '#+BEGIN_SRC'
+echo "$data"
+echo '#+END_SRC'
+echo '#+HTML: </details>'
+echo ':end:'
+#+END_SRC
+
+So far we've mostly talked about simple types that represent a single object. Sometimes we want to represent an object which contains several other objects. There are many container types. We'll go over some of the important ones here.
+
+* Lists
+A list is an ordered collection, where items are accessed by their position in the list. In Python, we can create a list using square brackets, wrapped around a comma separated list of expressions. These expressions will be evaluated and placed in the list.
+
+#+BEGIN_SRC python :exports both
+# `chr` function converts an ascii code to a character
+grades = [chr(65), "B", "C", "D", "F"]
+
+print(grades)
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+['A', 'B', 'C', 'D', 'F']
+#+END_SRC
+#+HTML: </details>
+:end:
+
+One can also access elements of a list using square brackets. To do this, name the list, then put an expression that evaluates to the index of the element of the list that you wish to access inside some square brackets to the right of the list name.
+
+#+BEGIN_SRC python :exports both
+grades = ["A", "B", "C", "D", "F"]
+
+print("The first grade in the list is: " + grades[0])
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+The first grade in the list is: A
+#+END_SRC
+#+HTML: </details>
+:end:
+Notice that index 0 refers to the first element of the list. In a programming context, 0 is usually considered the first number. In many contexts, this "zero indexing" is actually useful, and allows one to write neater code. Sometimes, however, you will forget that lists start with index 0, and this will result in a bug - everyone does it. If you make a mistake while writing code, it is likely a mistake everyone who has written code for a comparable amount of time has made. If everyone has made that mistake, it doesn't make you stupid to commit it. On the other hand, if you make a mistake no one else has ever made, you are probably a genius and should be given a medal.
+
+** Iterating Through Lists
+Consider the following snippet:
+
+#+BEGIN_SRC python :exports both
+grades = ["A", "B", "C", "D", "F"]
+# Indices: 0,   1,   2,   3,   4
+# Note that there are 5 elements in the list
+
+print("The possible grades in a standard US classroom are:")
+
+current_index = 0
+
+# The `len` function takes a list, and returns the number of items in said list
+while current_index < len(grades):
+    # We only want commas before every item but the first
+    if current_index > 0:
+        # Adding `end=""` to the arguments of a print statement stops it printing a newline after whatever you print.
+        print(", ", end="")
+    print(grades[current_index], end="")
+
+    current_index = current_index + 1
+print("!")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+The possible grades in a standard US classroom are:
+A, B, C, D, F!
+#+END_SRC
+#+HTML: </details>
+:end:
+
+Zero indexing allows us to use the ~<~ operator with the length of the list to make sure that a value is a valid index.
+
+We often find ourselves going through every item in a list like the above. As fun as writing that little counter was, in general, writing less code is better, so Python provides a shortcut:
+
+#+BEGIN_SRC python :exports both
+grades = ["A", "B", "C", "D", "F"]
+# Indices: 0,   1,   2,   3,   4
+# Note that there are 5 elements in the list
+
+print("The possible grades in a standard US classroom are:")
+
+for grade in grades:
+    if grade != "A":
+        # Adding `end=""` to the arguments of a print statement stops it printing a newline after whatever you print.
+        print(", ", end="")
+    print(grade, end="")
+print("!")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+The possible grades in a standard US classroom are:
+A, B, C, D, F!
+#+END_SRC
+#+HTML: </details>
+:end:
+
+A for loop is a statement that can be used to replace while loops when you want to iterate through each value in a collection. A for loop has the ~for~ keyword, a name used to refer to the items in the collection, the ~in~ keyword, a collection expression, a colon, and a code block. For each item in the collection, the name is assigned to that item's value, and the code block is run. The name used to refer to the collection items can be used within the code block. For loops are also called "for each" loops - reading the ~for~ keyword as "for each" may make more sense to you. Look at the code above again and give it a try!
