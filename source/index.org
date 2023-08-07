@@ -2,4 +2,5 @@
 
 - [[file:exercises.org][Exercises]]
 - [[file:lesson_0.org][Lesson 0: How Do I Run Code?]]
+- [[file:lesson_2.org][Lesson 1: Collections]]
 - [[file:lesson_1.org][Lesson 1: The Basic Basics]]
