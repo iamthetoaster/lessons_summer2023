@@ -206,6 +206,8 @@ print(grades)
 #+HTML: </details>
 :end:
 
+Now hold on - that list shouldn't have ~'E'~ in it. Now we need to remove an item. We can do that with ~.remove(item)~
+
 #+BEGIN_SRC python :exports both
 # Mostly the same ...
 grades = []
