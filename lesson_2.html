@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-08-06 Sun 21:40 -->
+<!-- 2023-08-30 Wed 21:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 2: Collections</title>
@@ -206,6 +206,11 @@
 <li><a href="#org68b5bd0">1. Lists</a>
 <ul>
 <li><a href="#org015a5f4">1.1. Iterating Through Lists</a></li>
+<li><a href="#org3495d82">1.2. Useful List Operations</a>
+<ul>
+<li><a href="#orga72d2e6">1.2.1. Making New Lists Out of Old Lists</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -337,11 +342,307 @@ A for loop is a statement that can be used to replace while loops when you want 
 </p>
 </div>
 </div>
+
+<div id="outline-container-org3495d82" class="outline-3">
+<h3 id="org3495d82"><span class="section-number-3">1.2.</span> Useful List Operations</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We can also use the <code>in</code> keyword as a question. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">student_grade</span> = <span style="color: #a6e3a1;">"B"</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">... later ...</span>
+<span style="color: #cdd6f4;">passing_grades</span> = [<span style="color: #a6e3a1;">"A"</span>, <span style="color: #a6e3a1;">"B"</span>, <span style="color: #a6e3a1;">"C"</span>]
+<span style="color: #cba6f7;">if</span> student_grade <span style="color: #cba6f7;">in</span> passing_grades:
+    <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Pass!"</span>)
+<span style="color: #cba6f7;">else</span>:
+    <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Alas..."</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Pass!
+</pre>
+</div>
+</details>
+
+<p>
+<code>in</code> is being used as an operator that returns as a boolean whether the operand on the right is an item of the operand on the left.
+</p>
+
+<p>
+If there&rsquo;s something we think we should be able to turn into a list, we can try it using the <code>list</code> function. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">digits</span> = <span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">10</span>)
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">The range function creates a "generator"</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">In this case the generator will generate numbers starting with zero, counting up to ten, ignoring ten itself</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Zero indexing again - note how that makes ten numbers!</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">We'll talk more about generators later</span>
+<span style="color: #cdd6f4;">list_of_digits</span> = <span style="color: #f38ba8;">list</span>(digits)
+<span style="color: #f38ba8;">print</span>(list_of_digits)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre>
+</div>
+</details>
+
+<p>
+Let&rsquo;s say we want to change a list. We can do that! Probably the most useful thing we can do to a list is to add something to it, using the <code>.append(item)</code> operation, like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">grades</span> = [] <span style="color: #6c7086;"># </span><span style="color: #6c7086;">an empty list!</span>
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Alright, this gets a bit dense</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">We're iterating through each number below 6, starting at zero</span>
+<span style="color: #cba6f7;">for</span> i <span style="color: #cba6f7;">in</span> <span style="color: #f38ba8;">list</span>(<span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">6</span>)):
+    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">For each number, add 65 to it ...</span>
+    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Convert the resulting number to a character code ...</span>
+    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Then add the resulting character to our list of grades</span>
+    grades.append(<span style="color: #f38ba8;">chr</span>(<span style="color: #fab387;">65</span> + i))
+
+<span style="color: #f38ba8;">print</span>(grades)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">['A', 'B', 'C', 'D', 'E', 'F']
+</pre>
+</div>
+</details>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #6c7086;"># </span><span style="color: #6c7086;">Mostly the same ...</span>
+<span style="color: #cdd6f4;">grades</span> = []
+
+<span style="color: #cba6f7;">for</span> i <span style="color: #cba6f7;">in</span> <span style="color: #f38ba8;">list</span>(<span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">6</span>)):
+    grades.append(<span style="color: #f38ba8;">chr</span>(<span style="color: #fab387;">65</span> + i))
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">But here's the twist:</span>
+grades.remove(<span style="color: #a6e3a1;">"E"</span>)
+<span style="color: #f38ba8;">print</span>(grades)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">['A', 'B', 'C', 'D', 'F']
+</pre>
+</div>
+</details>
+
+<p>
+That&rsquo;s better! Now let&rsquo;s say we&rsquo;re writing this code for multiple schools. One of those schools has some educational philosophy that doesn&rsquo;t believe in failure. As a result, they would like to remove the lowest grade, F, from the list of possible grades. We can do that with <code>.pop()</code>, like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">failure_is_not_an_option</span> = <span style="color: #fab387;">True</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">...</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Still mostly the same ...</span>
+<span style="color: #cdd6f4;">grades</span> = []
+
+<span style="color: #cba6f7;">for</span> i <span style="color: #cba6f7;">in</span> <span style="color: #f38ba8;">list</span>(<span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">6</span>)):
+    grades.append(<span style="color: #f38ba8;">chr</span>(<span style="color: #fab387;">65</span> + i))
+
+grades.remove(<span style="color: #a6e3a1;">"E"</span>)
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">But now, the twist is over here:</span>
+<span style="color: #cba6f7;">if</span> failure_is_not_an_option:
+    grades.pop()
+
+<span style="color: #f38ba8;">print</span>(grades)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">['A', 'B', 'C', 'D']
+</pre>
+</div>
+</details>
+
+<p>
+Lovely. Now we&rsquo;re taking on another client! This school has a different philosophy. They believe that students will work harder if they don&rsquo;t get As, so it&rsquo;s best to just not let them. We can use <code>.pop(index)</code> to remove an item at a particular index of a list:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">failure_is_not_an_option</span> = <span style="color: #fab387;">False</span>
+<span style="color: #cdd6f4;">success_is_not_an_option</span> = <span style="color: #fab387;">True</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">...</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Still mostly the same ...</span>
+<span style="color: #cdd6f4;">grades</span> = []
+
+<span style="color: #cba6f7;">for</span> i <span style="color: #cba6f7;">in</span> <span style="color: #f38ba8;">list</span>(<span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">6</span>)):
+    grades.append(<span style="color: #f38ba8;">chr</span>(<span style="color: #fab387;">65</span> + i))
+
+grades.remove(<span style="color: #a6e3a1;">"E"</span>)
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">But now, the twist is over here:</span>
+<span style="color: #cba6f7;">if</span> failure_is_not_an_option:
+    grades.pop()
+<span style="color: #cba6f7;">if</span> success_is_not_an_option:
+    grades.pop(<span style="color: #fab387;">0</span>) <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Zero indexing! The "zeroth" element is the first</span>
+
+<span style="color: #f38ba8;">print</span>(grades)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">['B', 'C', 'D', 'F']
+</pre>
+</div>
+</details>
+
+<p>
+Actually, I&rsquo;d rather not work for these people. Time to move on.
+</p>
+</div>
+
+<div id="outline-container-orga72d2e6" class="outline-4">
+<h4 id="orga72d2e6"><span class="section-number-4">1.2.1.</span> Making New Lists Out of Old Lists</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+Well, that was sort of a lie. The first thing we&rsquo;re going to do is not actually make a new list, just peer at a piece of the old list - a slice of it! In Python, we can access a subset of the elements of a list with colons and brackets. This is called a slice. A slice has up to three parts: a start, an end, and a step size. Here are a couple slices:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #6c7086;"># </span><span style="color: #6c7086;">Of course we need a list to slice!</span>
+<span style="color: #cdd6f4;">digits</span> = <span style="color: #f38ba8;">list</span>(<span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">10</span>))
+
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"All of em:              "</span>, digits)
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Specifying a start and nothing else</span>
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"All but the first:      "</span>, digits[<span style="color: #fab387;">1</span>:])
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Specifying an end and nothing else</span>
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Under fives:            "</span>, digits[:<span style="color: #fab387;">5</span>])
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Specifying a step size and nothing else</span>
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Evens:                  "</span>, digits[::<span style="color: #fab387;">2</span>])
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Indices can also be negative, which means you count backwards from the end</span>
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Without the last:       "</span>, digits[:-<span style="color: #fab387;">1</span>])
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">The step size can also be negative!</span>
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Backwards odds:         "</span>, digits[::-<span style="color: #fab387;">2</span>])
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">We can specify both a start and an end</span>
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Without first or last:  "</span>, digits[<span style="color: #fab387;">1</span>:-<span style="color: #fab387;">1</span>])
+
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">Or any combination of the parts of a slice - including all three!</span>
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Backwards evens above 2:"</span>, digits[-<span style="color: #fab387;">2</span>:<span style="color: #fab387;">2</span>:-<span style="color: #fab387;">2</span>])
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">All of em:               [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+All but the first:       [1, 2, 3, 4, 5, 6, 7, 8, 9]
+Under fives:             [0, 1, 2, 3, 4]
+Evens:                   [0, 2, 4, 6, 8]
+Without the last:        [0, 1, 2, 3, 4, 5, 6, 7, 8]
+Backwards odds:          [9, 7, 5, 3, 1]
+Without first or last:   [1, 2, 3, 4, 5, 6, 7, 8]
+Backwards evens above 2: [8, 6, 4]
+</pre>
+</div>
+</details>
+
+<p>
+Slices don&rsquo;t really create a new list; they just represent a piece of an already existing list. This means if you modify a slice, you modify the original list. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">digits</span> = <span style="color: #f38ba8;">list</span>(<span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">10</span>))
+
+<span style="color: #cdd6f4;">digits</span>[::<span style="color: #fab387;">2</span>] = [<span style="color: #a6e3a1;">"EVEN"</span>, <span style="color: #a6e3a1;">"EVEN"</span>, <span style="color: #a6e3a1;">"EVEN"</span>, <span style="color: #a6e3a1;">"EVEN"</span>, <span style="color: #a6e3a1;">"EVEN"</span>]
+
+<span style="color: #f38ba8;">print</span>(digits)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">['EVEN', 1, 'EVEN', 3, 'EVEN', 5, 'EVEN', 7, 'EVEN', 9]
+</pre>
+</div>
+</details>
+
+<p>
+We can create a real new list by a couple methods. One is what are called list comprehensions:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">digits</span> = <span style="color: #f38ba8;">list</span>(<span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">10</span>))
+
+<span style="color: #cdd6f4;">teens</span> = [<span style="color: #fab387;">10</span> + digit <span style="color: #cba6f7;">for</span> digit <span style="color: #cba6f7;">in</span> digits]
+
+<span style="color: #f38ba8;">print</span>(teens)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+</pre>
+</div>
+</details>
+
+<p>
+Yet another way to use <code>for</code> and <code>in</code>! A list comprehension is, in brackets, an expression which may use a new variable name, the for keyword, that new variable name, the in keyword, and the collection that we are creating a modified copy of. For each item in that collection, it sets the variable name to that thing, applies the expression to it, and sets the next item of the resulting list to that.
+</p>
+
+<p>
+We can also filter items of the collection we&rsquo;re using to seed our new list, using the <code>if</code> keyword, and a boolean expression that uses our variable name:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">digits</span> = <span style="color: #f38ba8;">list</span>(<span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">10</span>))
+
+<span style="color: #cdd6f4;">teens</span> = [<span style="color: #fab387;">10</span> + digit <span style="color: #cba6f7;">for</span> digit <span style="color: #cba6f7;">in</span> digits <span style="color: #cba6f7;">if</span> digit &gt; <span style="color: #fab387;">2</span>]
+
+<span style="color: #f38ba8;">print</span>(teens)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">[13, 14, 15, 16, 17, 18, 19]
+</pre>
+</div>
+</details>
+
+<p>
+Personally, I find that while these list comprehensions are very cool if they&rsquo;re short and simple, they tend to get horrid if you let it get out of hand. You can wind up putting a lot of information on one line, and that can be tricky to read.
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-08-06 Sun 21:40</p>
+<p class="date">Created: 2023-08-30 Wed 21:45</p>
 </div>
 </body>
 </html>
