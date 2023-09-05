@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-08-30 Wed 21:50 -->
+<!-- 2023-09-05 Tue 08:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 2: Collections</title>
@@ -195,6 +195,38 @@
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Open Sans">
 <link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -206,11 +238,15 @@
 <li><a href="#org68b5bd0">1. Lists</a>
 <ul>
 <li><a href="#org015a5f4">1.1. Iterating Through Lists</a></li>
-<li><a href="#org3495d82">1.2. Useful List Operations</a>
-<ul>
-<li><a href="#orga72d2e6">1.2.1. Making New Lists Out of Old Lists</a></li>
+<li><a href="#org3495d82">1.2. Useful List Operations</a></li>
 </ul>
 </li>
+<li><a href="#org6acf956">2. Strings</a></li>
+<li><a href="#org8381838">3. Generators</a></li>
+<li><a href="#orgef9e657">4. Making New Collections Out of Old Collections</a>
+<ul>
+<li><a href="#org802191b">4.1. Slices</a></li>
+<li><a href="#org8266148">4.2. Comprehensions</a></li>
 </ul>
 </li>
 </ul>
@@ -517,12 +553,233 @@ grades.remove(<span style="color: #a6e3a1;">"E"</span>)
 Actually, I&rsquo;d rather not work for these people. Time to move on.
 </p>
 </div>
+</div>
+</div>
 
-<div id="outline-container-orga72d2e6" class="outline-4">
-<h4 id="orga72d2e6"><span class="section-number-4">1.2.1.</span> Making New Lists Out of Old Lists</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<div id="outline-container-org6acf956" class="outline-2">
+<h2 id="org6acf956"><span class="section-number-2">2.</span> Strings</h2>
+<div class="outline-text-2" id="text-2">
 <p>
-Well, that was sort of a lie. The first thing we&rsquo;re going to do is not actually make a new list, just peer at a piece of the old list - a slice of it! In Python, we can access a subset of the elements of a list with colons and brackets. This is called a slice. A slice has up to three parts: a start, an end, and a step size. Here are a couple slices:
+If you think about it, a string is just a collection of letters! And python has thought about it. Strings are ordered and indexable in the same way lists are:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">message</span> = <span style="color: #a6e3a1;">"Hello, world!"</span>
+
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Message: "</span>, message)
+
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"First letter: "</span>, message[<span style="color: #fab387;">0</span>])
+
+<span style="color: #cba6f7;">for</span> letter <span style="color: #cba6f7;">in</span> message:
+    <span style="color: #f38ba8;">print</span>(letter, end=<span style="color: #a6e3a1;">" "</span>)
+<span style="color: #f38ba8;">print</span>()
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Message:  Hello, world!
+First letter:  H
+H e l l o ,   w o r l d ! 
+</pre>
+</div>
+</details>
+
+<p>
+You cannot, however, edit a string by assigning things to elements of it:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">word</span> = <span style="color: #a6e3a1;">"cat"</span>
+<span style="color: #cdd6f4;">word</span>[<span style="color: #fab387;">2</span>] = <span style="color: #a6e3a1;">"r"</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">TypeError: 'str' object does not support item assignment</span>
+</pre>
+</div>
+
+<p>
+You can also use the <code>in</code> keyword on strings, which will check whether a string on the left is a substring of the string on the right:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">if</span> <span style="color: #a6e3a1;">"gator"</span> <span style="color: #cba6f7;">in</span> <span style="color: #a6e3a1;">"purgatory"</span>:
+    <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"You can't spell purgatory without gator"</span>)
+<span style="color: #cba6f7;">else</span>:
+    <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"You can spell purgatory without gator"</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">You can't spell purgatory without gator
+</pre>
+</div>
+</details>
+
+<p>
+We can create a string by putting letters between a pair of double quotes, or single quotes. It doesn&rsquo;t matter, except you can use double quotes inside single quoted strings, and single quotes inside double quoted strings.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">string_1</span> = <span style="color: #a6e3a1;">'This is a string!'</span>
+<span style="color: #cdd6f4;">string_2</span> = <span style="color: #a6e3a1;">"This is another string!"</span>
+</pre>
+</div>
+
+<p>
+Python programmers tend to prefer using single quotes, because you don&rsquo;t have to press the shift key. I personally tend to prefer to use double quotes, as Python is not my only language, and double quotes are used in most languages.
+</p>
+
+<p>
+You can combine strings, and some things that can be turned into strings, using the <code>+</code> operator. This is called &ldquo;concatenation.&rdquo; It adds the strings back to back:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">predicate</span> = <span style="color: #a6e3a1;">"Greet"</span>
+<span style="color: #cdd6f4;">grammatical_object</span> = <span style="color: #a6e3a1;">"world"</span>
+
+<span style="color: #f38ba8;">print</span>(predicate + <span style="color: #a6e3a1;">" "</span> + grammatical_object + <span style="color: #a6e3a1;">"."</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Greet world.
+</pre>
+</div>
+</details>
+
+<p>
+Note that this creates a new string, and does not modify the old string! Similar to how 1 + 1 = 2, but that didn&rsquo;t change the first 1.
+</p>
+
+<p>
+You can also create strings using format strings, or fstrings for short. An fstring is formed by placing the letter f before the quotation marks that make up the string. Inside of an fstring, you can place a python expression inside of curly braces, and it will render that expression as part of the string. In general, I prefer using this functionality over the plus sign.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">first_number</span> = <span style="color: #fab387;">0</span>
+<span style="color: #cdd6f4;">second_number</span> = <span style="color: #fab387;">1</span>
+
+<span style="color: #f38ba8;">print</span>(f<span style="color: #a6e3a1;">"The first number is: </span>{first_number}<span style="color: #a6e3a1;">. The second number is: </span>{second_number}<span style="color: #a6e3a1;">. Their product is: </span>{first_number * second_number}<span style="color: #a6e3a1;">."</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">The first number is: 0. The second number is: 1. Their product is: 0.
+</pre>
+</div>
+</details>
+</div>
+</div>
+
+<div id="outline-container-org8381838" class="outline-2">
+<h2 id="org8381838"><span class="section-number-2">3.</span> Generators</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A list is an ordered collection where each element in it already exists. Since each element already exists, you can look for the fifth element, or the seventh, or the last one. A generator is different. Generators are kind of like a magic hat that doesn&rsquo;t have anything in it until you stick your arm in and pull somthing out of it.
+</p>
+
+<p>
+Why is that useful, you ask? Can&rsquo;t we just make a list instead, already populated with all the items we want in it? We can do more with a list, after all.
+</p>
+
+<p>
+Good question! While it is possible to make a list, and fill in each item in the list before we need them - what&rsquo;s known as eager evaluation - those items have to take up space. Furthermore, it takes time to build the whole list. When we use generators, we can a) not fill memory with things we don&rsquo;t actually need yet, and b) spread out the time it takes to generate a bunch of stuff across the time we&rsquo;re using it.
+</p>
+
+<p>
+Let&rsquo;s look at a place we might use generators:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">for</span> i <span style="color: #cba6f7;">in</span> <span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">4</span>):
+    <span style="color: #cba6f7;">for</span> j <span style="color: #cba6f7;">in</span> <span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">4</span>):
+        <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"na"</span>, end=<span style="color: #a6e3a1;">""</span>)
+    <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">","</span>)
+
+<span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"Die Fledermaus!"</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">nananana,
+nananana,
+nananana,
+nananana,
+Die Fledermaus!
+</pre>
+</div>
+</details>
+
+<p>
+We used code similar to this earlier, but converted our generator to a list. This way is both better to look at and better for the computer!
+</p>
+
+<p>
+Many functions, such as <code>range</code> exist to create generators. We usually don&rsquo;t need to, but if we want, we can make our own generators, using the <code>yield</code> keyword. This next example will also demonstrate the usefulness of not filling memory with things we don&rsquo;t need yet! Observe:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">natural_numbers</span>():
+    <span style="color: #cdd6f4;">counter</span> = <span style="color: #fab387;">1</span>
+    <span style="color: #cba6f7;">while</span> <span style="color: #fab387;">True</span>:
+        <span style="color: #cba6f7;">yield</span> counter
+        counter = counter + <span style="color: #fab387;">1</span>
+
+<span style="color: #cba6f7;">for</span> n <span style="color: #cba6f7;">in</span> natural_numbers():
+    <span style="color: #f38ba8;">print</span>(f<span style="color: #a6e3a1;">"</span>{n}<span style="color: #a6e3a1;">, </span>{n}<span style="color: #a6e3a1;"> iterations! Ha ha ha!"</span>)
+    <span style="color: #cba6f7;">if</span> n &gt; <span style="color: #fab387;">10</span>:
+        <span style="color: #6c7086;"># </span><span style="color: #6c7086;">If you find yourself in an infinite loop, try clicking the terminal and pressing Ctrl+c</span>
+        <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"That's quite enough of that."</span>)
+        <span style="color: #cba6f7;">break</span>
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">1, 1 iterations! Ha ha ha!
+2, 2 iterations! Ha ha ha!
+3, 3 iterations! Ha ha ha!
+4, 4 iterations! Ha ha ha!
+5, 5 iterations! Ha ha ha!
+6, 6 iterations! Ha ha ha!
+7, 7 iterations! Ha ha ha!
+8, 8 iterations! Ha ha ha!
+9, 9 iterations! Ha ha ha!
+10, 10 iterations! Ha ha ha!
+11, 11 iterations! Ha ha ha!
+That's quite enough of that.
+</pre>
+</div>
+</details>
+
+<p>
+Rendering that generator out to a list would prove problematic, as it has more items than our computer&rsquo;s memory can handle. Luckily, with generators, we don&rsquo;t have to!
+</p>
+
+<p>
+Again, rolling our own generators is usually not necessary, as there are many functions that create generators for us.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgef9e657" class="outline-2">
+<h2 id="orgef9e657"><span class="section-number-2">4.</span> Making New Collections Out of Old Collections</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org802191b" class="outline-3">
+<h3 id="org802191b"><span class="section-number-3">4.1.</span> Slices</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Well, that was sort of a lie. The first thing we&rsquo;re going to do is not actually make a new collection, just peer at a piece of the old collection - a slice of it! In Python, we can access a subset of the elements of certain collections with colons and brackets. This is called a slice. A slice has up to three parts: a start, an end, and a step size. Here are a couple slices:
 </p>
 
 <div class="org-src-container">
@@ -570,7 +827,7 @@ Backwards evens above 2: [8, 6, 4]
 </details>
 
 <p>
-Slices don&rsquo;t really create a new list; they just represent a piece of an already existing list. This means if you modify a slice, you modify the original list. For example:
+Slices don&rsquo;t really create a new collection; they just represent a piece of an already existing collection. This means if you modify a slice, you modify the original collection. For example:
 </p>
 
 <div class="org-src-container">
@@ -591,11 +848,78 @@ Slices don&rsquo;t really create a new list; they just represent a piece of an a
 </details>
 
 <p>
-We can create a real new list by a couple methods. One is what are called list comprehensions:
+Slices also work on strings:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #cdd6f4;">digits</span> = <span style="color: #f38ba8;">list</span>(<span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">10</span>))
+<pre class="src src-python"><span style="color: #cdd6f4;">word</span> = <span style="color: #a6e3a1;">"grape"</span>
+<span style="color: #f38ba8;">print</span>(word)
+<span style="color: #f38ba8;">print</span>(word[<span style="color: #fab387;">2</span>:])
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">grape
+ape
+</pre>
+</div>
+</details>
+</div>
+</div>
+
+<div id="outline-container-org8266148" class="outline-3">
+<h3 id="org8266148"><span class="section-number-3">4.2.</span> Comprehensions</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Comprehensions are kind of like Python&rsquo;s version of mathematical set builder notation! Consider the set of odd square numbers:
+</p>
+
+\begin{equation*}
+\{x^2 \mid x \in \mathbb{N}, x \bmod{2} = 1\}
+\end{equation*}
+
+<p>
+We can read this as: the set of x squared, where x is an element of the natural numbers, as long as the remainder of dividing x by two is one. We can write the same thing in Python! Let&rsquo;s go ahead and reuse our natural number generator from before:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">natural_numbers</span>():
+    <span style="color: #cdd6f4;">counter</span> = <span style="color: #fab387;">1</span>
+    <span style="color: #cba6f7;">while</span> <span style="color: #fab387;">True</span>:
+        <span style="color: #cba6f7;">yield</span> counter
+        counter = counter + <span style="color: #fab387;">1</span>
+
+<span style="color: #cdd6f4;">odd_squares</span> = (x * x <span style="color: #cba6f7;">for</span> x <span style="color: #cba6f7;">in</span> natural_numbers() <span style="color: #cba6f7;">if</span> x % <span style="color: #fab387;">2</span> == <span style="color: #fab387;">1</span>)
+
+<span style="color: #cba6f7;">for</span> square <span style="color: #cba6f7;">in</span> odd_squares:
+    <span style="color: #f38ba8;">print</span>(square)
+    <span style="color: #cba6f7;">if</span> square &gt; <span style="color: #fab387;">100</span>:
+        <span style="color: #cba6f7;">break</span>
+
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">1
+9
+25
+49
+81
+121
+</pre>
+</div>
+</details>
+
+<p>
+As you can see, the syntax is a little different, but the idea is fundamentally the same! This is a generator comprehension. We can also make a list comprehension! Just wrap it in brackets instead of parentheses.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">digits</span> = <span style="color: #f38ba8;">range</span>(<span style="color: #fab387;">10</span>)
 
 <span style="color: #cdd6f4;">teens</span> = [<span style="color: #fab387;">10</span> + digit <span style="color: #cba6f7;">for</span> digit <span style="color: #cba6f7;">in</span> digits]
 
@@ -612,11 +936,11 @@ We can create a real new list by a couple methods. One is what are called list c
 </details>
 
 <p>
-Yet another way to use <code>for</code> and <code>in</code>! A list comprehension is, in brackets, an expression which may use a new variable name, the for keyword, that new variable name, the in keyword, and the collection that we are creating a modified copy of. For each item in that collection, it sets the variable name to that thing, applies the expression to it, and sets the next item of the resulting list to that.
+Comprehensions are another way to use <code>for</code> and <code>in</code>! A comprehension is an expression which may use a new variable name, the <code>for</code> keyword, that new variable name, the <code>in</code> keyword, and the collection that we are creating a modified copy of. For each item in that collection, it sets the variable name to that thing, applies the expression to it, and sets the next item of the resulting collection to that result.
 </p>
 
 <p>
-We can also filter items of the collection we&rsquo;re using to seed our new list, using the <code>if</code> keyword, and a boolean expression that uses our variable name:
+We can also optionally filter items of the collection we&rsquo;re using to seed our new collection, using the <code>if</code> keyword, and a boolean expression that uses our variable name:
 </p>
 
 <div class="org-src-container">
@@ -637,16 +961,19 @@ We can also filter items of the collection we&rsquo;re using to seed our new lis
 </details>
 
 <p>
-Personally, I find that while these list comprehensions are very cool if they&rsquo;re short and simple, they tend to get horrid if you let it get out of hand. You can wind up putting a lot of information on one line, and that can be tricky to read.
+If you wrap a comprehension in square brackets, it will be a list comprehension. If you wrap it in parentheses, or leave it unwrapped, it will be a generator expression. If you wrap it in curly braces, you can make a set comprehension, and if you wrap it in curly braces and use a colon in the expression at the beginning of the comprehension, you can make a dictionary comprehension.
 </p>
-</div>
+
+<p>
+Personally, I find that while these comprehensions are very cool if they&rsquo;re short and simple, they tend to get horrid if you let it get out of hand. You can wind up putting a lot of information on one line, and that can be tricky to read.
+</p>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-08-30 Wed 21:50</p>
+<p class="date">Created: 2023-09-05 Tue 08:41</p>
 </div>
 </body>
 </html>

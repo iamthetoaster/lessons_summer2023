@@ -295,8 +295,197 @@ print(grades)
 
 Actually, I'd rather not work for these people. Time to move on.
 
-*** Making New Lists Out of Old Lists
-Well, that was sort of a lie. The first thing we're going to do is not actually make a new list, just peer at a piece of the old list - a slice of it! In Python, we can access a subset of the elements of a list with colons and brackets. This is called a slice. A slice has up to three parts: a start, an end, and a step size. Here are a couple slices:
+* Strings
+If you think about it, a string is just a collection of letters! And python has thought about it. Strings are ordered and indexable in the same way lists are:
+
+#+BEGIN_SRC python :exports both
+message = "Hello, world!"
+
+print("Message: ", message)
+
+print("First letter: ", message[0])
+
+for letter in message:
+    print(letter, end=" ")
+print()
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Message:  Hello, world!
+First letter:  H
+H e l l o ,   w o r l d !
+#+END_SRC
+#+HTML: </details>
+:end:
+
+You cannot, however, edit a string by assigning things to elements of it:
+
+#+BEGIN_SRC python
+word = "cat"
+word[2] = "r"
+# TypeError: 'str' object does not support item assignment
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+#+END_SRC
+#+HTML: </details>
+:end:
+
+You can also use the ~in~ keyword on strings, which will check whether a string on the left is a substring of the string on the right:
+
+#+BEGIN_SRC python :exports both
+if "gator" in "purgatory":
+    print("You can't spell purgatory without gator")
+else:
+    print("You can spell purgatory without gator")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+You can't spell purgatory without gator
+#+END_SRC
+#+HTML: </details>
+:end:
+
+We can create a string by putting letters between a pair of double quotes, or single quotes. It doesn't matter, except you can use double quotes inside single quoted strings, and single quotes inside double quoted strings.
+
+#+BEGIN_SRC python
+string_1 = 'This is a string!'
+string_2 = "This is another string!"
+#+END_SRC
+
+Python programmers tend to prefer using single quotes, because you don't have to press the shift key. I personally tend to prefer to use double quotes, as Python is not my only language, and double quotes are used in most languages.
+
+You can combine strings, and some things that can be turned into strings, using the ~+~ operator. This is called "concatenation." It adds the strings back to back:
+
+#+BEGIN_SRC python :exports both
+predicate = "Greet"
+grammatical_object = "world"
+
+print(predicate + " " + grammatical_object + ".")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Greet world.
+#+END_SRC
+#+HTML: </details>
+:end:
+
+Note that this creates a new string, and does not modify the old string! Similar to how 1 + 1 = 2, but that didn't change the first 1.
+
+You can also create strings using format strings, or fstrings for short. An fstring is formed by placing the letter f before the quotation marks that make up the string. Inside of an fstring, you can place a python expression inside of curly braces, and it will render that expression as part of the string. In general, I prefer using this functionality over the plus sign.
+
+#+BEGIN_SRC python :exports both
+first_number = 0
+second_number = 1
+
+print(f"The first number is: {first_number}. The second number is: {second_number}. Their product is: {first_number * second_number}.")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+The first number is: 0. The second number is: 1. Their product is: 0.
+#+END_SRC
+#+HTML: </details>
+:end:
+
+* Generators
+A list is an ordered collection where each element in it already exists. Since each element already exists, you can look for the fifth element, or the seventh, or the last one. A generator is different. Generators are kind of like a magic hat that doesn't have anything in it until you stick your arm in and pull somthing out of it.
+
+Why is that useful, you ask? Can't we just make a list instead, already populated with all the items we want in it? We can do more with a list, after all.
+
+Good question! While it is possible to make a list, and fill in each item in the list before we need them - what's known as eager evaluation - those items have to take up space. Furthermore, it takes time to build the whole list. When we use generators, we can a) not fill memory with things we don't actually need yet, and b) spread out the time it takes to generate a bunch of stuff across the time we're using it.
+
+Let's look at a place we might use generators:
+
+#+BEGIN_SRC python :exports both
+for i in range(4):
+    for j in range(4):
+        print("na", end="")
+    print(",")
+
+print("Die Fledermaus!")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+nananana,
+nananana,
+nananana,
+nananana,
+Die Fledermaus!
+#+END_SRC
+#+HTML: </details>
+:end:
+
+We used code similar to this earlier, but converted our generator to a list. This way is both better to look at and better for the computer!
+
+Many functions, such as ~range~ exist to create generators. We usually don't need to, but if we want, we can make our own generators, using the ~yield~ keyword. This next example will also demonstrate the usefulness of not filling memory with things we don't need yet! Observe:
+
+#+BEGIN_SRC python :exports both
+def natural_numbers():
+    counter = 1
+    while True:
+        yield counter
+        counter = counter + 1
+
+for n in natural_numbers():
+    print(f"{n}, {n} iterations! Ha ha ha!")
+    if n > 10:
+        # If you find yourself in an infinite loop, try clicking the terminal and pressing Ctrl+c
+        print("That's quite enough of that.")
+        break
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+1, 1 iterations! Ha ha ha!
+2, 2 iterations! Ha ha ha!
+3, 3 iterations! Ha ha ha!
+4, 4 iterations! Ha ha ha!
+5, 5 iterations! Ha ha ha!
+6, 6 iterations! Ha ha ha!
+7, 7 iterations! Ha ha ha!
+8, 8 iterations! Ha ha ha!
+9, 9 iterations! Ha ha ha!
+10, 10 iterations! Ha ha ha!
+11, 11 iterations! Ha ha ha!
+That's quite enough of that.
+#+END_SRC
+#+HTML: </details>
+:end:
+
+Rendering that generator out to a list would prove problematic, as it has more items than our computer's memory can handle. Luckily, with generators, we don't have to!
+
+Again, rolling our own generators is usually not necessary, as there are many functions that create generators for us.
+
+* Making New Collections Out of Old Collections
+** Slices
+Well, that was sort of a lie. The first thing we're going to do is not actually make a new collection, just peer at a piece of the old collection - a slice of it! In Python, we can access a subset of the elements of certain collections with colons and brackets. This is called a slice. A slice has up to three parts: a start, an end, and a step size. Here are a couple slices:
 
 #+BEGIN_SRC python :exports both
 # Of course we need a list to slice!
@@ -343,7 +532,7 @@ Backwards evens above 2: [8, 6, 4]
 #+HTML: </details>
 :end:
 
-Slices don't really create a new list; they just represent a piece of an already existing list. This means if you modify a slice, you modify the original list. For example:
+Slices don't really create a new collection; they just represent a piece of an already existing collection. This means if you modify a slice, you modify the original collection. For example:
 
 #+BEGIN_SRC python :exports both
 digits = list(range(10))
@@ -363,10 +552,69 @@ print(digits)
 #+HTML: </details>
 :end:
 
-We can create a real new list by a couple methods. One is what are called list comprehensions:
+Slices also work on strings:
 
 #+BEGIN_SRC python :exports both
-digits = list(range(10))
+word = "grape"
+print(word)
+print(word[2:])
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+grape
+ape
+#+END_SRC
+#+HTML: </details>
+:end:
+
+** Comprehensions
+Comprehensions are kind of like Python's version of mathematical set builder notation! Consider the set of odd square numbers:
+
+\begin{equation*}
+\{x^2 \mid x \in \mathbb{N}, x \bmod{2} = 1\}
+\end{equation*}
+
+We can read this as: the set of x squared, where x is an element of the natural numbers, as long as the remainder of dividing x by two is one. We can write the same thing in Python! Let's go ahead and reuse our natural number generator from before:
+
+#+BEGIN_SRC python :exports both
+def natural_numbers():
+    counter = 1
+    while True:
+        yield counter
+        counter = counter + 1
+
+odd_squares = (x * x for x in natural_numbers() if x % 2 == 1)
+
+for square in odd_squares:
+    print(square)
+    if square > 100:
+        break
+
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+1
+9
+25
+49
+81
+121
+#+END_SRC
+#+HTML: </details>
+:end:
+
+As you can see, the syntax is a little different, but the idea is fundamentally the same! This is a generator comprehension. We can also make a list comprehension! Just wrap it in brackets instead of parentheses.
+
+#+BEGIN_SRC python :exports both
+digits = range(10)
 
 teens = [10 + digit for digit in digits]
 
@@ -383,9 +631,9 @@ print(teens)
 #+HTML: </details>
 :end:
 
-Yet another way to use ~for~ and ~in~! A list comprehension is, in brackets, an expression which may use a new variable name, the for keyword, that new variable name, the in keyword, and the collection that we are creating a modified copy of. For each item in that collection, it sets the variable name to that thing, applies the expression to it, and sets the next item of the resulting list to that.
+Comprehensions are another way to use ~for~ and ~in~! A comprehension is an expression which may use a new variable name, the ~for~ keyword, that new variable name, the ~in~ keyword, and the collection that we are creating a modified copy of. For each item in that collection, it sets the variable name to that thing, applies the expression to it, and sets the next item of the resulting collection to that result.
 
-We can also filter items of the collection we're using to seed our new list, using the ~if~ keyword, and a boolean expression that uses our variable name:
+We can also optionally filter items of the collection we're using to seed our new collection, using the ~if~ keyword, and a boolean expression that uses our variable name:
 
 #+BEGIN_SRC python :exports both
 digits = list(range(10))
@@ -405,4 +653,6 @@ print(teens)
 #+HTML: </details>
 :end:
 
-Personally, I find that while these list comprehensions are very cool if they're short and simple, they tend to get horrid if you let it get out of hand. You can wind up putting a lot of information on one line, and that can be tricky to read.
+If you wrap a comprehension in square brackets, it will be a list comprehension. If you wrap it in parentheses, or leave it unwrapped, it will be a generator expression. If you wrap it in curly braces, you can make a set comprehension, and if you wrap it in curly braces and use a colon in the expression at the beginning of the comprehension, you can make a dictionary comprehension.
+
+Personally, I find that while these comprehensions are very cool if they're short and simple, they tend to get horrid if you let it get out of hand. You can wind up putting a lot of information on one line, and that can be tricky to read.
