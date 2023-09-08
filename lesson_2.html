@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-09-05 Tue 08:41 -->
+<!-- 2023-09-08 Fri 12:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lesson 2: Collections</title>
@@ -243,10 +243,11 @@
 </li>
 <li><a href="#org6acf956">2. Strings</a></li>
 <li><a href="#org8381838">3. Generators</a></li>
-<li><a href="#orgef9e657">4. Making New Collections Out of Old Collections</a>
+<li><a href="#org7068f02">4. Dictionaries</a></li>
+<li><a href="#orgef9e657">5. Making New Collections Out of Old Collections</a>
 <ul>
-<li><a href="#org802191b">4.1. Slices</a></li>
-<li><a href="#org8266148">4.2. Comprehensions</a></li>
+<li><a href="#org802191b">5.1. Slices</a></li>
+<li><a href="#org8266148">5.2. Comprehensions</a></li>
 </ul>
 </li>
 </ul>
@@ -771,13 +772,83 @@ Again, rolling our own generators is usually not necessary, as there are many fu
 </div>
 </div>
 
-<div id="outline-container-orgef9e657" class="outline-2">
-<h2 id="orgef9e657"><span class="section-number-2">4.</span> Making New Collections Out of Old Collections</h2>
+<div id="outline-container-org7068f02" class="outline-2">
+<h2 id="org7068f02"><span class="section-number-2">4.</span> Dictionaries</h2>
 <div class="outline-text-2" id="text-4">
+<p>
+A dictionary, sometimes called a map, is a collection of keys and values. Each key exists at most once, and has an associated value. Values are accessed by their keys. Keys and values can be any number of types; usually all keys are the same type, and all values are the same type.
+</p>
+
+<p>
+You can create a dictionary by wrapping a comma separated list of keys and values, those separated by a colon, in curly braces. You can also just call <code>dict()</code> to create an empty one.
+</p>
+
+<p>
+Dictionaries can also have their keys iterated across. The <code>in</code> keyword when applied to dictionaries checks whether the left hand operand is a present key.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">class_names</span> = {
+    <span style="color: #a6e3a1;">"ENG5A"</span>: <span style="color: #a6e3a1;">"Rhetoric for Lemurs"</span>,
+    <span style="color: #a6e3a1;">"ENG5B"</span>: <span style="color: #a6e3a1;">"Rhetoric about Lemurs"</span>,
+    <span style="color: #a6e3a1;">"BIO20"</span>: <span style="color: #a6e3a1;">"Lemur Anatomy"</span>,
+    <span style="color: #a6e3a1;">"CS101"</span>: <span style="color: #a6e3a1;">"Simulating Lemur Behavior for the Web"</span>
+}
+
+<span style="color: #cba6f7;">for</span> code <span style="color: #cba6f7;">in</span> class_names:
+    <span style="color: #f38ba8;">print</span>(f<span style="color: #a6e3a1;">"Class code </span>{code}<span style="color: #a6e3a1;"> refers to </span>{class_names[code]}<span style="color: #a6e3a1;">"</span>)
+
+<span style="color: #cba6f7;">if</span> <span style="color: #a6e3a1;">"PHYS11"</span> <span style="color: #cba6f7;">in</span> class_names:
+    <span style="color: #f38ba8;">print</span>(f<span style="color: #a6e3a1;">"PHYS11 refers to </span>{class_names['PHYS11']}<span style="color: #a6e3a1;">"</span>)
+<span style="color: #cba6f7;">else</span>:
+    <span style="color: #f38ba8;">print</span>(<span style="color: #a6e3a1;">"We do not know what PHYS11 is"</span>)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">Class code ENG5A refers to Rhetoric for Lemurs
+Class code ENG5B refers to Rhetoric about Lemurs
+Class code BIO20 refers to Lemur Anatomy
+Class code CS101 refers to Simulating Lemur Behavior for the Web
+We do not know what PHYS11 is
+</pre>
+</div>
+</details>
+
+<p>
+You can add items to the dictionary by just assigning to them.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">prerequisites</span> = <span style="color: #f38ba8;">dict</span>()
+<span style="color: #cdd6f4;">prerequisites</span>[<span style="color: #a6e3a1;">"MATH 2"</span>] = <span style="color: #a6e3a1;">"MATH 1"</span>
+<span style="color: #f38ba8;">print</span>(prerequisites)
+</pre>
+</div>
+
+<details>
+<summary>Output</summary>
+<div class="org-src-container">
+<pre class="src src-nil">{'MATH 2': 'MATH 1'}
+</pre>
+</div>
+</details>
+
+<p>
+Dictionaries are some of the most useful collections you will ever see! We often want to associate data with other data, and dictionaries are a great way to do that.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgef9e657" class="outline-2">
+<h2 id="orgef9e657"><span class="section-number-2">5.</span> Making New Collections Out of Old Collections</h2>
+<div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org802191b" class="outline-3">
-<h3 id="org802191b"><span class="section-number-3">4.1.</span> Slices</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org802191b"><span class="section-number-3">5.1.</span> Slices</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 Well, that was sort of a lie. The first thing we&rsquo;re going to do is not actually make a new collection, just peer at a piece of the old collection - a slice of it! In Python, we can access a subset of the elements of certain collections with colons and brackets. This is called a slice. A slice has up to three parts: a start, an end, and a step size. Here are a couple slices:
 </p>
@@ -870,8 +941,8 @@ ape
 </div>
 
 <div id="outline-container-org8266148" class="outline-3">
-<h3 id="org8266148"><span class="section-number-3">4.2.</span> Comprehensions</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="org8266148"><span class="section-number-3">5.2.</span> Comprehensions</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 Comprehensions are kind of like Python&rsquo;s version of mathematical set builder notation! Consider the set of odd square numbers:
 </p>
@@ -973,7 +1044,7 @@ Personally, I find that while these comprehensions are very cool if they&rsquo;r
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Gabriel Cardozo</p>
-<p class="date">Created: 2023-09-05 Tue 08:41</p>
+<p class="date">Created: 2023-09-08 Fri 12:52</p>
 </div>
 </body>
 </html>

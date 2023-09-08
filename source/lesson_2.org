@@ -483,6 +483,64 @@ Rendering that generator out to a list would prove problematic, as it has more i
 
 Again, rolling our own generators is usually not necessary, as there are many functions that create generators for us.
 
+* Dictionaries
+A dictionary, sometimes called a map, is a collection of keys and values. Each key exists at most once, and has an associated value. Values are accessed by their keys. Keys and values can be any number of types; usually all keys are the same type, and all values are the same type.
+
+You can create a dictionary by wrapping a comma separated list of keys and values, those separated by a colon, in curly braces. You can also just call ~dict()~ to create an empty one.
+
+Dictionaries can also have their keys iterated across. The ~in~ keyword when applied to dictionaries checks whether the left hand operand is a present key.
+
+#+BEGIN_SRC python :exports both
+class_names = {
+    "ENG5A": "Rhetoric for Lemurs",
+    "ENG5B": "Rhetoric about Lemurs",
+    "BIO20": "Lemur Anatomy",
+    "CS101": "Simulating Lemur Behavior for the Web"
+}
+
+for code in class_names:
+    print(f"Class code {code} refers to {class_names[code]}")
+
+if "PHYS11" in class_names:
+    print(f"PHYS11 refers to {class_names['PHYS11']}")
+else:
+    print("We do not know what PHYS11 is")
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+Class code ENG5A refers to Rhetoric for Lemurs
+Class code ENG5B refers to Rhetoric about Lemurs
+Class code BIO20 refers to Lemur Anatomy
+Class code CS101 refers to Simulating Lemur Behavior for the Web
+We do not know what PHYS11 is
+#+END_SRC
+#+HTML: </details>
+:end:
+
+You can add items to the dictionary by just assigning to them.
+
+#+BEGIN_SRC python :exports both
+prerequisites = dict()
+prerequisites["MATH 2"] = "MATH 1"
+print(prerequisites)
+#+END_SRC
+
+#+RESULTS:
+:results:
+#+HTML: <details>
+#+HTML: <summary>Output</summary>
+#+BEGIN_SRC
+{'MATH 2': 'MATH 1'}
+#+END_SRC
+#+HTML: </details>
+:end:
+
+Dictionaries are some of the most useful collections you will ever see! We often want to associate data with other data, and dictionaries are a great way to do that.
+
 * Making New Collections Out of Old Collections
 ** Slices
 Well, that was sort of a lie. The first thing we're going to do is not actually make a new collection, just peer at a piece of the old collection - a slice of it! In Python, we can access a subset of the elements of certain collections with colons and brackets. This is called a slice. A slice has up to three parts: a start, an end, and a step size. Here are a couple slices:
